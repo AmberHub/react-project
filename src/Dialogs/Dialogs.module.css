@@ -1,0 +1,26 @@
+.DialogsWrapper {
+	display: grid;
+	grid-template-columns: 1.5fr 5fr;
+	grid-template-areas: 
+	"n d"
+	"n d";
+}
+
+.dialogsName {
+	padding: 2vw;
+}
+
+.dialogsNameItem {
+	display: block;
+	text-decoration: none;
+	color: white;
+	padding-bottom: 1vw;
+}
+
+.active {
+	color: black;
+}
+
+.messages {
+	
+}

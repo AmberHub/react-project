@@ -1,0 +1,17 @@
+.sidebar {
+  grid-area: s;
+  background-color: red;
+}
+
+.nav {
+	padding: 1vw;
+}
+
+.item {
+	display: block;
+	text-decoration: none;
+	color: white;
+}
+.active {
+	color: black;
+}

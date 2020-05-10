@@ -1,0 +1,15 @@
+.ProfileWrapper {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-areas: 
+	"u u"
+	"p p";
+}
+
+.upProfile {
+	grid-area: u;
+}
+
+.post {
+	grid-area: p;
+}
