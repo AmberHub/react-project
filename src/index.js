@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store from './Redux/store.js';
+import store from './Redux/redux-store.js';
 
 
 let rerenderAll = (state) => {ReactDOM.render(
 	  <React.StrictMode>
 	  	<BrowserRouter>
 	    	<App dispatch = {store.dispatch.bind(store)}
-	    	state={store.getState()} 
+	    	state={store.getState()}  store={store}
 	    	/>
 	    </BrowserRouter>
 	  </React.StrictMode>,
@@ -20,10 +20,8 @@ let rerenderAll = (state) => {ReactDOM.render(
 };
 
 
-
 rerenderAll(store.getState());
 
-store.callStore(rerenderAll);
 
 
 // If you want your app to work offline and load faster, you can change

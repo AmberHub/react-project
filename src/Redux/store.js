@@ -40,8 +40,7 @@ let store = {
 
 			},
 
-			SidebarData : { },
-
+			SidebarData : { }
 	},
 
 

@@ -1,20 +1,18 @@
 import React from 'react'
 import classes from "./Profile.module.css"
-import MyPosts from "./MyPosts/MyPosts.jsx"
+import MyPostsContainer from "./MyPosts/MyPostsContainer.jsx"
+
+
 
 const Profile = (props) => {
 
 	let textareaPostRef = React.createRef();
 
-	let addPost = () => {
-		props.dispatch( { type : "ADD-POST" } );
-	}
-
-
 	let changePostLetter = () => {
 		let text = textareaPostRef.current.value;
-		props.dispatch( { type : "CHANGE-POST-LETTER", text : text } );
+		props.changePostLetter(text);
 	}
+	
   return (
   	<div className={classes.ProfileWrapper}>
   		<div className={classes.upProfile}>
@@ -22,10 +20,9 @@ const Profile = (props) => {
   		</div>
   		<div className={classes.post}>
   			<textarea ref={textareaPostRef} onChange={changePostLetter} value={props.textPostValue}></textarea>
-  			<button onClick={addPost}>Add post</button>
-  			<MyPosts PostsData={props.PostsData}/>
+  			<button onClick={props.addPost}>Add post</button>
+  			<MyPostsContainer store={props.store}/>
   		</div>
-
   	</div>
   );
 }

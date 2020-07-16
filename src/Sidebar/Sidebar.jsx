@@ -16,6 +16,7 @@ const Sidebar = () => {
 		  	<NavItem name="Dialogs" to="/dialogs"/>
 		  	<NavItem name="Friends" to="/friends"/>
 		  	<NavItem name="News" to="/news"/>
+		  	<NavItem name="Users" to="/users"/>
 	  	</nav>
   	</div>
   );

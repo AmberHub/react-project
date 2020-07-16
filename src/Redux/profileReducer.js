@@ -1,19 +1,37 @@
-const profileReducer = (state, action) => {
+let initialState = {
+
+			PostsData : [
+			{message:"Hi"},
+			{message:"I have a problem"},
+			{message:"I'm your socnet"},
+			{message:"And now I'm sucks"} ],
+
+			textPostValue : "",
+
+}
+
+
+
+
+
+const profileReducer = (state=initialState, action) => {
+
+	let stateCopy = {...state};
 
 	switch (action.type) {
 
 		case "ADD-POST" : 
-			let post = { 
-				message :  state.textPostValue
+			let body = state.textPostValue;
+			return {
+				...state,
+				PostsData: [...state.PostsData, {message :  body}],
+				textPostValue: ''
 			};
-			state.PostsData.push(post);
-			state.textPostValue = '';
-			return state;
-
 		case "CHANGE-POST-LETTER" : 
-			state.textPostValue = action.text;
-			return state;
-
+		return {
+			...state,
+			textPostValue: action.text
+		}
 		default :
 			return state;
 	};
