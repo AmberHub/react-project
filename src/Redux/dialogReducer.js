@@ -24,14 +24,14 @@ const dialogReducer = (state=initialState, action) => {
 
 	switch (action.type) {
 
-		case "ADD-MESSAGE" : 
+		case "ADD_MESSAGE" : 
 			let body = state.textMessageValue;
 			return {
 				...state,
 				DialogMessageData: [...state.DialogMessageData, {message : body}],
 				textMessageValue: ''
 			}
-		case "CHANGE-MESSAGE-LETTER" : 
+		case "CHANGE_MESSAGE_LETTER" : 
 		return {
 			...state,
 			textMessageValue: action.text

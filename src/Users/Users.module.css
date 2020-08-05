@@ -1,0 +1,15 @@
+.userItem {
+	margin: 0 auto;
+	text-align: center;
+	padding: 3% 0 3%;
+}
+
+.avatar {
+	height: 20%;
+	width: 20%;
+	border-radius: 50%;
+}
+
+.currentPageNumber {
+	font-weight: bold;
+}

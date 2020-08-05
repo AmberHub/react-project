@@ -20,14 +20,14 @@ const profileReducer = (state=initialState, action) => {
 
 	switch (action.type) {
 
-		case "ADD-POST" : 
+		case "ADD_POST" : 
 			let body = state.textPostValue;
 			return {
 				...state,
 				PostsData: [...state.PostsData, {message :  body}],
 				textPostValue: ''
 			};
-		case "CHANGE-POST-LETTER" : 
+		case "CHANGE_POST_LETTER" : 
 		return {
 			...state,
 			textPostValue: action.text
