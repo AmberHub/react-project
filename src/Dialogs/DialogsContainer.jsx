@@ -3,7 +3,7 @@ import classes from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom"
 import Dialogs from "./Dialogs.jsx"
 import {connect} from "react-redux"
-import {addMessageActionCreator, changeMessageLetterActionCreator} from "./../Redux/actionCreators.js"
+import {addMessage, changeMessageLetter} from "./../Redux/actionCreators.js"
 
 
 const DialogName = (props) => {
@@ -28,15 +28,10 @@ let mapStateToProps = (state) => {
   }
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return{
-  	changeMessageLetter : (text) => {  dispatch( changeMessageLetterActionCreator(text) )  },
-  	addMessage : () => {  dispatch(addMessageActionCreator() )  }
-  }
-};
 
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, { changeMessageLetter, addMessage })
+(Dialogs);
 
 
 export default DialogsContainer;

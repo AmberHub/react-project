@@ -2,8 +2,8 @@
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-areas: 
-	"u u"
-	"p p";
+	"u"
+	"p";
 }
 
 .upProfile {
@@ -13,3 +13,4 @@
 .post {
 	grid-area: p;
 }
+

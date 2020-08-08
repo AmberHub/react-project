@@ -3,7 +3,8 @@ let initialState = {
 	page : 1,
 	count : 5,
 	totalCountPage : 20,
-	currentPage : 1
+	currentPage : 1,
+	isFetching : false
 };
 
 const usersReducer = ( state = initialState, action) => {
@@ -30,7 +31,10 @@ const usersReducer = ( state = initialState, action) => {
 			return {...state, page : action.page, currentPage : action.page};
 
 		case "GET_TC" :
-			// return {...state, totalCountPage: action.totalCountPage};
+			 return {...state, totalCountPage: action.totalCountPage};
+
+		case "FETCHING" : 
+			return {...state, isFetching: !state.isFetching};
 
 		default : return state;
 	}

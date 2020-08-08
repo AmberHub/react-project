@@ -1,22 +1,14 @@
 let initialState = {
 
-			PostsData : [
-			{message:"Hi"},
-			{message:"I have a problem"},
-			{message:"I'm your socnet"},
-			{message:"And now I'm sucks"} ],
-
-			textPostValue : "",
-
+	profileData : null,
+	PostsData : [{message:"Hi"}],
+	textPostValue : "",
+	isFetching : false
 }
-
-
-
 
 
 const profileReducer = (state=initialState, action) => {
 
-	let stateCopy = {...state};
 
 	switch (action.type) {
 
@@ -27,13 +19,17 @@ const profileReducer = (state=initialState, action) => {
 				PostsData: [...state.PostsData, {message :  body}],
 				textPostValue: ''
 			};
+
 		case "CHANGE_POST_LETTER" : 
-		return {
-			...state,
-			textPostValue: action.text
-		}
-		default :
-			return state;
+		return { ...state, textPostValue: action.text };
+
+		case "SET_PROFILE" : 
+		return {...state, profileData: action.data};
+
+		case "FETCHING" : 
+		return {...state, isFetching: !state.isFetching};
+
+		default : return state;
 	};
 
 };

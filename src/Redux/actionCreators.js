@@ -14,19 +14,31 @@ const CHANGE_PAGE = "CHANGE_PAGE";
 
 const GET_TC = "GET_TC";
 
+const FETCHING = "FETCHING";
 
-export let addMessageActionCreator = () => ({ type : ADD_MESSAGE });
+const SET_PROFILE = "SET_PROFILE";
 
-export let changeMessageLetterActionCreator = (text) => ({ type : CHANGE_MESSAGE_LETTER, text });
+const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
-export let addPostActionCreator = () => ({ type : ADD_POST });
 
-export let changePostLetterActionCreator = (text) => ({ type : CHANGE_POST_LETTER, text });
+export let addMessage = () => ({ type : ADD_MESSAGE });
 
-export let followAC = (userId) => ({ type : FOLLOW_UNFOLLOW, userId });
+export let changeMessageLetter = (text) => ({ type : CHANGE_MESSAGE_LETTER, text });
 
-export let setUsersAC = (newUsers) => ({ type : SET_USERS, newUsers });
+export let addPost = () => ({ type : ADD_POST });
 
-export let chagePageAC = (page) => ({type : CHANGE_PAGE, page});
+export let changePostLetter = (text) => ({ type : CHANGE_POST_LETTER, text });
 
-export let getTotalCountPageAC = (total) => ({type: GET_TC, totalCountPage : total});
+export let follow = (userId) => ({ type : FOLLOW_UNFOLLOW, userId });
+
+export let updateUsers = (newUsers) => ({ type : SET_USERS, newUsers });
+
+export let changePage = (page) => ({type : CHANGE_PAGE, page});
+
+export let getTotalCountPage = (total) => ({type: GET_TC, totalCountPage : total});
+
+export let fetching = () => ({type : FETCHING});
+
+export let setProfile = (data) => ({type : SET_PROFILE, data});
+
+export let setAuthUserData = (data) => ({type : SET_AUTH_USER_DATA, data});

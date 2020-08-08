@@ -7,3 +7,9 @@
   height: 3em;
   width: 3em;
 }
+
+.login {
+	float: right;
+	color: white;
+	text-decoration: none;
+}
