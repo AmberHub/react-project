@@ -1,3 +1,6 @@
+import { setAuthUserData } from "./actionCreators.js";
+import {authAPI} from "./../API/api.js";
+
 let initialState = {
 
 	login: null,
@@ -19,6 +22,13 @@ const authReducer = (state=initialState, action) => {
 
 		default : return state;
 	}
- }
+ };
+
+
+export let isAuthTC = () => (dispatch) => {
+	authAPI.isAuthed().then( data => {
+		dispatch(setAuthUserData(data.data))})
+}
+
 
  export default authReducer;

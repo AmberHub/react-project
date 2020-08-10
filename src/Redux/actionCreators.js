@@ -20,6 +20,8 @@ const SET_PROFILE = "SET_PROFILE";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
+const FOLLOWING = "FLLOWING";
+
 
 export let addMessage = () => ({ type : ADD_MESSAGE });
 
@@ -39,6 +41,8 @@ export let getTotalCountPage = (total) => ({type: GET_TC, totalCountPage : total
 
 export let fetching = () => ({type : FETCHING});
 
-export let setProfile = (data) => ({type : SET_PROFILE, data});
+export let updateProfile = (data) => ({type : SET_PROFILE, data});
 
 export let setAuthUserData = (data) => ({type : SET_AUTH_USER_DATA, data});
+
+export let following = () => ({type : FOLLOWING});

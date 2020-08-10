@@ -2,6 +2,9 @@ import React from "react";
 import classes from "./Users.module.css";
 import classnames from "classnames";
 import {NavLink} from "react-router-dom";
+import {userAPI} from "./../API/api.js";
+import { followTC } from "./../Redux/usersReducer.js";
+
 
 const Users = (props) => {
 	return <div>
@@ -12,7 +15,7 @@ const Users = (props) => {
 		}
 
 		{
-			props.users.map( u => <NavLink className={classes.nav} to={`/profile/${u.id}`}><div key={u.id} className={classes.userItem}>
+			props.users.map( u => <div key={u.id} className={classes.userItem}><NavLink className={classes.nav} to={`/profile/${u.id}`}>
 			<img className={classes.avatar} src={u.photos.small ? u.photos.small : "https://exelord.com/ember-initials/images/default-d5f51047d8bd6327ec4a74361a7aae7f.jpg"} alt="photo"/>
 			<br/>
 			<span className={classes.name}>{u.name}</span> 
@@ -21,8 +24,11 @@ const Users = (props) => {
 			<br/>
 			<span>u.location.country <br/> u.location.city</span>
 			<br/>
-			<button className={classes.buttonFollow} onClick={ () =>  props.follow(u.id) }>{u.followed ? "followed" : "unfollowed"}</button>
-		</div></NavLink>)
+
+			</NavLink>
+			<button disabled={props.followInProgres} className={classes.buttonFollow} onClick={ () => 
+				u.followed ? props.followTC(false, u.id) : props.followTC(true, u.id) }>{u.followed ? "followed" : "unfollowed"}</button>
+		</div>)
 		}
 	</div>
 }

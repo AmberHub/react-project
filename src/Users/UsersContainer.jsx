@@ -1,32 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
-import {follow, updateUsers, changePage, getTotalCountPage, fetching} from "./../Redux/actionCreators.js";
+import {follow, updateUsers, changePage, getTotalCountPage,
+ fetching, following} from "./../Redux/actionCreators.js";
 import Users from "./Users.jsx";
-import * as axios from "axios";
 import Preloader from "./../Preloader.jsx";
+import { setUsersTC, followTC, changePageTC } from "./../Redux/usersReducer.js";
 
 
 class UsersAPI extends React.Component {
 
 	componentDidMount = () => {
-		this.props.fetching();
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`).then( response => {
-			this.props.updateUsers(response.data.items);
-			this.props.getTotalCountPage(response.data.totalCount);
-			this.props.fetching();
-		})
-	}
+		this.props.setUsersTC(this.props.page, this.props.count)
+		}
 
 	changePage = (p) => {
-		this.props.fetching();
-		this.props.changePage(p);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.count}`).then( response => {
-			this.props.updateUsers(response.data.items)
-			this.props.fetching();
-		});
-		
-
-	}
+		this.props.changePageTC( p, this.props.count)
+		}
 
 	render = () => {
 		let pageCount = Math.ceil(this.props.totalCountPage / this.props.count);
@@ -43,7 +32,10 @@ class UsersAPI extends React.Component {
 					follow={this.props.follow}
 					changePage={this.changePage}
 					currentPage={this.props.currentPage}
-					totalCountPage={this.props.totalCountPage}/>} </>
+					totalCountPage={this.props.totalCountPage}
+					following={this.props.following}
+					followInProgres={this.props.followInProgres}
+					followTC={this.props.followTC}/>} </>
 	}
 };
 
@@ -54,12 +46,15 @@ let mapStateToProps = (state) => {
 	count: state.UsersPage.count,
 	totalCountPage : state.UsersPage.totalCountPage,
 	currentPage : state.UsersPage.currentPage,
-	isFetching: state.UsersPage.isFetching
+	isFetching: state.UsersPage.isFetching,
+	followInProgres : state.UsersPage.followInProgres
 	}
 };
 
 const UsersContainer = connect(mapStateToProps, {
-	follow, updateUsers, changePage, getTotalCountPage, fetching
+	follow, updateUsers, changePage,
+	getTotalCountPage, fetching, following,
+	setUsersTC, followTC, changePageTC
 	}) (UsersAPI);
 
 export default UsersContainer;

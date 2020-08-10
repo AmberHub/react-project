@@ -2,23 +2,18 @@ import React from 'react';
 import classes from "./Header.module.css";
 import Header from "./Header.jsx";
 import { connect } from "react-redux";
-import * as axios from "axios";
-import { setAuthUserData } from "./../Redux/actionCreators.js";
+import { isAuthTC } from "./../Redux/authReducer.js";
 
 class HeaderAPI extends React.Component {
 
 	componentDidMount = () => {
-		axios.get("https://social-network.samuraijs.com/api/1.0/auth/me", {
-			withCredentials : true
-		}).then( response => {
-			this.props.setAuthUserData(response.data.data)
-		})
-	};
+		this.props.isAuthTC();
+	}
 
 	render = () => {
 		return <Header { ...this.props } />
 	};
-};
+}
 
 let mapStateToProps = (state) => ({
 	isAuth: state.Auth.isAuth,
@@ -27,4 +22,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { setAuthUserData })(HeaderAPI);
+export default connect(mapStateToProps, { isAuthTC })(HeaderAPI);

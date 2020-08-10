@@ -4,8 +4,8 @@ import MyPosts from "./MyPosts/MyPosts.jsx";
 import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
-import {addPost, changePostLetter, setProfile, fetching} from "./../Redux/actionCreators.js";
-import * as axios from "axios";
+import {addPost, changePostLetter, updateProfile, fetching} from "./../Redux/actionCreators.js";
+import { profileAPI } from "./../API/api.js";
 
 class ProfileAPI extends React.Component {
 
@@ -15,9 +15,10 @@ class ProfileAPI extends React.Component {
     if (!userId && this.props.isAuth) {
       userId = this.props.myId;
     };
-    axios.get("https://social-network.samuraijs.com/api/1.0/profile/" + userId).then( response => 
-    this.props.setProfile(response.data))
-    this.props.fetching();
+
+    profileAPI.setProfile(userId).then( data => {
+       this.props.updateProfile(data)});
+      this.props.fetching();
   };
 
   render = () => {
@@ -39,4 +40,4 @@ let mapStateToProps = (state) => {
 let ComponentWithURLDataProfile = withRouter(ProfileAPI);
 
 export default connect(mapStateToProps, { addPost, changePostLetter,
- setProfile, fetching }) (ComponentWithURLDataProfile);
+ updateProfile, fetching }) (ComponentWithURLDataProfile);
