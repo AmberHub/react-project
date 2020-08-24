@@ -1,4 +1,4 @@
-import {updateUsers, getTotalCountPage, fetching, follow, changePage} from "./actionCreators.js";
+import {updateUsers, getTotalCountPage, fetching, follow, changePage, following} from "./actionCreators.js";
 import {userAPI} from "./../API/api.js";
 
 
@@ -9,7 +9,7 @@ let initialState = {
 	totalCountPage : 20,
 	currentPage : 1,
 	isFetching : false,
-	followInProgres : false
+	followInProgres : [ ]
 };
 
 const usersReducer = ( state = initialState, action) => {
@@ -42,7 +42,9 @@ const usersReducer = ( state = initialState, action) => {
 			return {...state, isFetching: !state.isFetching};
 
 		case "FOLLOWING" : 
-			return {...state, followInProgres: !state.followInProgres};
+			return {...state, followInProgres : action.isFetching 
+			? [...state.followInProgres, action.userId]
+			: state.followInProgres.filter( id => id != action.userId)} ;
 
 		default : return state;
 	}
@@ -69,18 +71,20 @@ export let changePageTC = (page, count) => (dispatch) => {
 }
 
 export let followTC = (isFollow, userId) => (dispatch) => {
+	dispatch(following(userId, true));
 	if (isFollow === false) {
 		userAPI.unfollow(userId).then( data => {
 		if(data.resultCode === 0) {
+			dispatch(following(userId, false));
 			dispatch(follow(userId))
 		}})
 	} else if (isFollow === true) {
 		userAPI.follow(userId).then( data => {
 			if(data.resultCode === 0) {
+				dispatch(following(userId, false));
 				dispatch(follow(userId))
 			}})
 	}
-	
 }
 
 

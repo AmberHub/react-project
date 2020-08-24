@@ -5,7 +5,8 @@ import {follow, updateUsers, changePage, getTotalCountPage,
 import Users from "./Users.jsx";
 import Preloader from "./../Preloader.jsx";
 import { setUsersTC, followTC, changePageTC } from "./../Redux/usersReducer.js";
-
+import { compose } from "redux";
+import { withAuth } from "./../HOC/AuthHOC.jsx";
 
 class UsersAPI extends React.Component {
 
@@ -51,10 +52,19 @@ let mapStateToProps = (state) => {
 	}
 };
 
-const UsersContainer = connect(mapStateToProps, {
+let authMapStateToProps = (state) => {
+	return {
+		isAuth : state.Auth.isAuth
+	}
+}
+
+
+export default compose( 
+	connect(authMapStateToProps, { }),
+	withAuth,
+	connect(mapStateToProps, {
 	follow, updateUsers, changePage,
 	getTotalCountPage, fetching, following,
 	setUsersTC, followTC, changePageTC
-	}) (UsersAPI);
-
-export default UsersContainer;
+	})
+	) (UsersAPI) ;

@@ -26,7 +26,7 @@ const Users = (props) => {
 			<br/>
 
 			</NavLink>
-			<button disabled={props.followInProgres} className={classes.buttonFollow} onClick={ () => 
+			<button disabled={props.followInProgres.some(id => id === u.id)} className={classes.buttonFollow} onClick={ () => 
 				u.followed ? props.followTC(false, u.id) : props.followTC(true, u.id) }>{u.followed ? "followed" : "unfollowed"}</button>
 		</div>)
 		}

@@ -7,6 +7,7 @@ import DialogsContainer from './Dialogs/DialogsContainer.jsx';
 import News from './News/News.jsx';
 import Friends from './Friends/Friends.jsx';
 import UsersContainer from './Users/UsersContainer.jsx';
+import Login from "./Login/Login.jsx";
 import {Route} from "react-router-dom";
 
 const App = (props) => {
@@ -20,6 +21,7 @@ const App = (props) => {
         <Route path="/friends" render={() => <Friends/>  }/>
         <Route path="/news" render={() => <News/>  }/>
         <Route path="/users" render={() => <UsersContainer />  }/>
+        <Route path="/login" render={() => <Login />  }/>
       </div>
     </div>
   );

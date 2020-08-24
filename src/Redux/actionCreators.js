@@ -20,7 +20,12 @@ const SET_PROFILE = "SET_PROFILE";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
-const FOLLOWING = "FLLOWING";
+const FOLLOWING = "FOLLOWING";
+
+const GET_AUTH = "GET_AUTH";
+
+const SET_STATUS = "SET_STATUS";
+
 
 
 export let addMessage = () => ({ type : ADD_MESSAGE });
@@ -45,4 +50,6 @@ export let updateProfile = (data) => ({type : SET_PROFILE, data});
 
 export let setAuthUserData = (data) => ({type : SET_AUTH_USER_DATA, data});
 
-export let following = () => ({type : FOLLOWING});
+export let following = (userId, isFetching) => ({type : FOLLOWING, userId, isFetching});
+
+export let setStatus = (status) => ({type : SET_STATUS, status});
