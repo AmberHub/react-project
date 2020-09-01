@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./Header.module.css";
 import Header from "./Header.jsx";
 import { connect } from "react-redux";
-import { isAuthTC } from "./../Redux/authReducer.js";
+import { isAuthTC, logoutTC } from "./../Redux/authReducer.js";
 
 class HeaderAPI extends React.Component {
 
@@ -22,4 +22,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { isAuthTC })(HeaderAPI);
+export default connect(mapStateToProps, { isAuthTC, logoutTC })(HeaderAPI);

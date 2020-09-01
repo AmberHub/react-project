@@ -11,10 +11,6 @@ let initialState = {
 			{id:"1", name:"Soniashka"},
 			{id:"2", name:"Nazarko"},
 			{id:"3", name:"Vitya"} ],
-
-
-			textMessageValue : "",
-
 }
 
 
@@ -25,19 +21,11 @@ const dialogReducer = (state=initialState, action) => {
 	switch (action.type) {
 
 		case "ADD_MESSAGE" : 
-			let body = state.textMessageValue;
-			return {
-				...state,
-				DialogMessageData: [...state.DialogMessageData, {message : body}],
-				textMessageValue: ''
+			return {...state,
+				DialogMessageData: [...state.DialogMessageData, {message : action.message}]
 			}
-		case "CHANGE_MESSAGE_LETTER" : 
-		return {
-			...state,
-			textMessageValue: action.text
-		}
-		default : 
-			return state;
+
+		default : return state;
 	};
 
 };

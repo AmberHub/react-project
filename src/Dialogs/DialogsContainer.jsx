@@ -3,13 +3,17 @@ import classes from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom"
 import Dialogs from "./Dialogs.jsx"
 import {connect} from "react-redux"
-import {addMessage, changeMessageLetter} from "./../Redux/actionCreators.js"
+import { addMessage } from "./../Redux/actionCreators.js"
 import { withAuth } from "./../HOC/AuthHOC.jsx";
 import { compose } from "redux";
 
 class DialogsContainer extends React.Component {
+	onSubmit = (values) => {
+		this.props.addMessage(values.message)
+}
+
 	render = () => {
-		return <Dialogs {...this.props} />
+		return <Dialogs {...this.props} onSubmit={this.onSubmit} />
 	}
 };
 
@@ -30,8 +34,7 @@ let mapStateToProps = (state) => {
     DialogNameItem : state.Dialog.DialogNameData.map(
     	d => <DialogName id={d.id} name={d.name} key={d.id}/> ),
     DialogMessageItem : state.Dialog.DialogMessageData.map(
-    	m => <DialogMessage message={m.message} key={m.id}/> ),
-    textMessageValue : state.Dialog.textMessageValue
+    	m => <DialogMessage message={m.message} key={m.id}/> )
   }
 };
 
@@ -42,7 +45,7 @@ let authMapStateToProps = (state) => {
 };
 
 export default compose(
-	connect(mapStateToProps, { changeMessageLetter, addMessage }),
+	connect(mapStateToProps, { addMessage }),
 	connect(authMapStateToProps, { }),
 	withAuth
 	)(DialogsContainer);

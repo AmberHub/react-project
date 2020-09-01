@@ -1,23 +1,23 @@
-import React from 'react'
-import classes from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom"
+import React from 'react';
+import classes from "./Dialogs.module.css";
+import { reduxForm, Field } from "redux-form";
 
 
+const DialogsForm = (props) => {
+	return <div>
+		<form onSubmit={props.handleSubmit}>
+			<div>
+				<Field placeholder="Message" component="textarea" name="message"/>
+			</div>
+
+			<div>
+				<button type="submit">Send Message</button>
+			</div>
+		</form>
+	</div>
+}
 
 const Dialogs = (props) => {
-
-
-let textareaMessagesRef = React.createRef();
-
-let addMessage = () => {
-	props.addMessage();
-};
-
-let changeMessageLetter = () => {
-	let text = textareaMessagesRef.current.value;
-	props.changeMessageLetter(text);
-};
-
 	return (
 	<div className={classes.DialogsWrapper}>
 		<div className={classes.dialogsName}>
@@ -25,11 +25,14 @@ let changeMessageLetter = () => {
 		</div>
 		<div className={classes.messages}>
 			{props.DialogMessageItem}
-			<textarea ref={textareaMessagesRef} onChange={changeMessageLetter} value={props.textMessageValue}></textarea>
-  			<button onClick={addMessage}>Send Message</button>
+			<DialogsFormWith onSubmit={props.onSubmit} />
 		</div>
 	</div>
 	);
 }
+
+
+
+let DialogsFormWith = reduxForm( { form : "messageForm" } )(DialogsForm)
 
 export default Dialogs;

@@ -7,7 +7,6 @@ let initialState = {
 
 	profileData : null,
 	PostsData : [{message:"Hi"}],
-	textPostValue : "",
 	isFetching : false,
 	status : ""
 }
@@ -19,11 +18,8 @@ const profileReducer = (state=initialState, action) => {
 	switch (action.type) {
 
 		case "ADD_POST" : 
-			let body = state.textPostValue;
-			return {
-				...state,
-				PostsData: [...state.PostsData, {message :  body}],
-				textPostValue: ''
+			return {...state,
+				PostsData: [...state.PostsData, {message :  action.post}]
 			};
 
 		case "CHANGE_POST_LETTER" : 
@@ -46,12 +42,14 @@ const profileReducer = (state=initialState, action) => {
 
 export let setProfileTC = (userId, isAuth, myId) => (dispatch) => {
 	dispatch(fetching());
-    if (!userId && isAuth) {
-      userId = myId;
-    };
-	profileAPI.setProfile(userId).then( data => {
-      dispatch(updateProfile(data))});
-      dispatch(fetching());
+	
+	if (isAuth && !userId) 
+		userId = myId;
+
+		profileAPI.setProfile(userId).then( data => {
+    	dispatch(updateProfile(data));
+    	dispatch(fetching());
+    }); 
 }
 
 export let setStatusTC = (userId) => (dispatch) => {

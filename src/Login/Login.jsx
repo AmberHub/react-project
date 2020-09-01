@@ -1,19 +1,23 @@
 import React from 'react';
-import {Field} from "redux-form";
 import LoginForm from "./LoginForm.jsx";
 import { reduxForm } from "redux-form";
+import { Redirect } from "react-router-dom";
 
-const Login = (props) => {
+class Login extends React.Component {
+
+	submitForm = (values) => {
+   		this.props.loginTC(values.email, values.password, values.rememberMe)
+	}
+
+	render = () => {
 	return <div>
 		<h1>login</h1>
-		<LoginFormWith onSubmit={onSubmit} />
+		<LoginFormWith onSubmit={this.submitForm} />
 	</div>
+	} 
 }
 
-let onSubmit = (values) => {
-	
-}
 
 let LoginFormWith = reduxForm( { form : "login" } )(LoginForm);
 
-export default Login
+export default Login;

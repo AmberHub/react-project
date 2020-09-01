@@ -26,13 +26,15 @@ const GET_AUTH = "GET_AUTH";
 
 const SET_STATUS = "SET_STATUS";
 
+const LOGIN = "LOGIN";
 
 
-export let addMessage = () => ({ type : ADD_MESSAGE });
+
+export let addMessage = (message) => ({ type : ADD_MESSAGE, message });
 
 export let changeMessageLetter = (text) => ({ type : CHANGE_MESSAGE_LETTER, text });
 
-export let addPost = () => ({ type : ADD_POST });
+export let addPost = (post) => ({ type : ADD_POST, post });
 
 export let changePostLetter = (text) => ({ type : CHANGE_POST_LETTER, text });
 
@@ -48,8 +50,10 @@ export let fetching = () => ({type : FETCHING});
 
 export let updateProfile = (data) => ({type : SET_PROFILE, data});
 
-export let setAuthUserData = (data) => ({type : SET_AUTH_USER_DATA, data});
+export let setAuthUserData = (data, isAuth) => ({type : SET_AUTH_USER_DATA, data, isAuth});
 
 export let following = (userId, isFetching) => ({type : FOLLOWING, userId, isFetching});
 
 export let setStatus = (status) => ({type : SET_STATUS, status});
+
+export let login = (userId) => ({type : LOGIN, userId});

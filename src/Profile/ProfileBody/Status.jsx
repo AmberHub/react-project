@@ -1,4 +1,8 @@
 import React from "react";
+import {Field} from "redux-form";
+import {Input} from "./../../utils/completeFormComponents.jsx";
+import {require} from "./../../utils/validate.js";
+
 
 class Status extends React.Component {
 
@@ -6,8 +10,7 @@ class Status extends React.Component {
 		if(prevProps.status !== this.props.status) {
 			this.setState({
 			status: this.props.status
-		})
-		}
+		})}
 	}
 
 	state = {
@@ -37,10 +40,18 @@ class Status extends React.Component {
 
 	render = () => {
 		return <div>
-			{ this.state.editMode ? <input onChange={this.onChangeStatus} onBlur={this.statusEdited} value={this.state.status} autoFocus={true} onDoubleClick={this.statusEdited}></input>
+			{ this.state.editMode ? <StatusFrom onChange={this.onChangeStatus} onBlur={this.statusEdited}
+			 value={this.state.status} autoFocus={true} onDoubleClick={this.statusEdited}/> 
 			: <span onDoubleClick={this.forEditStatus}>{this.props.status}</span> }
 		</div>
 	}
+}
+
+
+const StatusFrom = (props) => {
+	return <form >
+		<Field name="status" component={Input} validate={[ require ]}  />
+	</form>
 }
 
 export default Status;

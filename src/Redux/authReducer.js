@@ -1,5 +1,6 @@
-import { setAuthUserData } from "./actionCreators.js";
-import {authAPI} from "./../API/api.js";
+import { setAuthUserData, login } from "./actionCreators.js";
+import { authAPI } from "./../API/api.js";
+import { stopSubmit } from "redux-form"
 
 let initialState = {
 
@@ -18,7 +19,7 @@ const authReducer = (state=initialState, action) => {
 		login: action.data.login,
 		email: action.data.email,
 		userId: action.data.id,
-		isAuth: true};
+		isAuth: action.isAuth};
 
 		default : return state;
 	}
@@ -28,8 +29,24 @@ const authReducer = (state=initialState, action) => {
 export let isAuthTC = () => (dispatch) => {
 	authAPI.isAuthed().then( data => {
 		if(data.resultCode === 0) {
-			dispatch(setAuthUserData(data.data))}})
+			dispatch(setAuthUserData(data.data, true))}})
 }
 
+export let loginTC = ( email, password, rememberMe ) => (dispatch) => {
+	authAPI.login( email, password, rememberMe ).then( data => {
+		if(data.resultCode === 0) {
+			authAPI.isAuthed().then( data => {
+		if(data.resultCode === 0) {
+			dispatch(setAuthUserData(data.data, true))}})
+		} else {
+			dispatch(stopSubmit("login", { _error : data.message ? data.message : "something went wrong"}))
+		}
+})}
+
+export let logoutTC = () => (dispatch) => {
+	authAPI.logout().then( data => {
+		if(data.resultCode === 0) 
+		dispatch(setAuthUserData({login : null, email : null, userId : null}, false))
+})}
 
  export default authReducer;

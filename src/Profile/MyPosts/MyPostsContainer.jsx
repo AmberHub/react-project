@@ -2,7 +2,19 @@ import {connect} from "react-redux";
 import React from 'react';
 import MyPosts from "./MyPosts.jsx";
 import classes from "./Post.module.css";
-import { addPost, changePostLetter } from "./../../Redux/actionCreators.js";
+import { addPost } from "./../../Redux/actionCreators.js";
+
+
+
+class MyPostsContainer extends React.Component {
+	onSubmit = (values) => {
+		this.props.addPost(values.post)
+	}
+
+	render = () => {
+		return <MyPosts {...this.props} onSubmit={this.onSubmit} />
+	}
+}
 
 const Post = (props) => {
 	return <div>
@@ -12,16 +24,15 @@ const Post = (props) => {
 		</div>
 	</div>
 }
- 
+
+
 
 let mapStateToProps = (state) => {
 	return {
-		Posts : state.Profile.PostsData.map(p => <Post PostText={p.message} key={p.id}/>),
-		textPostValue : state.Profile.textPostValue,
+		Posts : state.Profile.PostsData.map(p => <Post PostText={p.message} key={p.id}/>)
 	}
 }
 
 
-const MyPostsContainer = connect(mapStateToProps, { addPost, changePostLetter })(MyPosts);
 
-export default MyPostsContainer;
+export default connect(mapStateToProps, { addPost })(MyPostsContainer);;
