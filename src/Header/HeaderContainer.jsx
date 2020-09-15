@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from "./Header.module.css";
 import Header from "./Header.jsx";
 import { connect } from "react-redux";
 import { isAuthTC, logoutTC } from "./../Redux/authReducer.js";
 
-class HeaderAPI extends React.Component {
+const HeaderAPI = (props) => {
 
-	componentDidMount = () => {
-		this.props.isAuthTC();
-	}
+	useEffect( () => {
+		props.isAuthTC();
+	}, [])
 
-	render = () => {
-		return <Header { ...this.props } />
-	};
+	return <Header { ...props } />
 }
 
 let mapStateToProps = (state) => ({

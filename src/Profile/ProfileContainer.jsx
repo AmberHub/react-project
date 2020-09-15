@@ -1,49 +1,65 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts.jsx";
 import Profile from "./Profile.jsx";
-import {connect} from "react-redux";
+import Preloader from "./../utils/Preloader.jsx";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {addPost, changePostLetter, updateProfile, fetching} from "./../Redux/actionCreators.js";
-import { setProfileTC, setStatusTC, updateStatusTC } from "./../Redux/profileReducer.js";
+import { fetching } from "./../Redux/actionCreators.js";
+import { updatePhotoTC, setProfileTC, setStatusTC, updateStatusTC } from "./../Redux/profileReducer.js";
 import { compose } from "redux";
 import { withAuth } from "./../HOC/AuthHOC.jsx"
+import { getPhotos, getPostData, getIsFetching, getProfileData,
+getStatus } from "./../Selectors/profileSelectors.js";
+import { getIsAuth, getUserId } from "./../Selectors/authSelectors.js";
 
-class ProfileAPI extends React.Component {
+const ProfileAPI = (props) => {
 
-  componentDidMount = () => {
-    this.props.setProfileTC(this.props.match.params.userId,
-    this.props.isAuth, this.props.myId);
-    this.props.setStatusTC(this.props.myId);
-  };
+  let [isOwner, setIsOwner] = useState(false);
 
-  render = () => {
-    return <Profile { ...this.props }/>
-  };
-};
+  useEffect( () => {
+    props.setProfileTC(props.match.params.userId,
+    props.isAuth, props.myId);
+    props.setStatusTC(props.myId);
+  }, [])
 
-let mapStateToProps = (state) => {
-  return{
-    PostsData : state.Profile.PostsData,
-    textPostValue : state.Profile.textPostValue,
-    isFetching : state.Profile.isFetching,
-    profileData : state.Profile.profileData,
-    status : state.Profile.status,
-    isAuth : state.Auth.isAuth,
-    myId : state.Auth.userId
+  useEffect( () => {
+    if(!props.match.params.userId) {
+      props.setProfileTC(props.match.params.userId,
+      props.isAuth, props.myId);
+      setIsOwner(true);
+    } 
+  }, [props.match.params.userId])
+
+  let selectPhoto = (e) => {
+   props.updatePhotoTC(e.target.files[0], props.myId)
   }
+    
+    return <> {!props.profileData ? <Preloader />
+    : <Profile { ...props } isOwner={isOwner} selectPhoto={selectPhoto}/>} </>
+
 };
 
-let authMapStateToProps = (state) => {
-  return{
+let mapStateToProps = (state) => ({
+
+    PostsData : getPostData(state),
+    isFetching : getIsFetching(state),
+    profileData : getProfileData(state),
+    status : getStatus(state),
+    isAuth : getIsAuth(state),
+    myId : getUserId(state),
+    photos : getPhotos(state)
+
+});
+
+
+let authMapStateToProps = (state) => ({
     isAuth : state.Auth.isAuth
-  }
-};
+});
 
 
 export default compose(
-  connect(mapStateToProps, { addPost, changePostLetter,
-  updateProfile, fetching, setProfileTC, setStatusTC, updateStatusTC }),
+  connect(mapStateToProps, { updatePhotoTC, fetching, setProfileTC, setStatusTC, updateStatusTC }),
   withRouter,
   connect(authMapStateToProps, { }),
   withAuth) (ProfileAPI);

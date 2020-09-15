@@ -8,8 +8,8 @@ let initialState = {
 			{message:"yo"} ],
 
 			DialogNameData : [
-			{id:"1", name:"Soniashka"},
-			{id:"2", name:"Nazarko"},
+			{id:"1", name:"Sonia"},
+			{id:"2", name:"Nazar"},
 			{id:"3", name:"Vitya"} ],
 }
 
@@ -22,7 +22,8 @@ const dialogReducer = (state=initialState, action) => {
 
 		case "ADD_MESSAGE" : 
 			return {...state,
-				DialogMessageData: [...state.DialogMessageData, {message : action.message}]
+				DialogMessageData: [...state.DialogMessageData,
+				{message : action.message}]
 			}
 
 		default : return state;

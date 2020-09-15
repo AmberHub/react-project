@@ -1,10 +1,6 @@
 const ADD_POST = "ADD_POST";
 
-const CHANGE_POST_LETTER = "CHANGE_POST_LETTER";
-
 const ADD_MESSAGE = "ADD_MESSAGE";
-
-const CHANGE_MESSAGE_LETTER = "CHANGE_MESSAGE_LETTER";
 
 const FOLLOW_UNFOLLOW = "FOLLOW_UNFOLLOW";
 
@@ -28,27 +24,30 @@ const SET_STATUS = "SET_STATUS";
 
 const LOGIN = "LOGIN";
 
+const INITIALIZED = "INITIALIZED";
+
+const CHANGE_PORTION = "CHANGE_PORTION";
+
+const UPDATE_PHOTO_SUCCESS = "UPDATE_PHOTO_SUCCESS";
+
+
 
 
 export let addMessage = (message) => ({ type : ADD_MESSAGE, message });
 
-export let changeMessageLetter = (text) => ({ type : CHANGE_MESSAGE_LETTER, text });
-
 export let addPost = (post) => ({ type : ADD_POST, post });
-
-export let changePostLetter = (text) => ({ type : CHANGE_POST_LETTER, text });
 
 export let follow = (userId) => ({ type : FOLLOW_UNFOLLOW, userId });
 
-export let updateUsers = (newUsers) => ({ type : SET_USERS, newUsers });
+export let requestUsers = (newUsers) => ({ type : SET_USERS, newUsers });
 
 export let changePage = (page) => ({type : CHANGE_PAGE, page});
 
-export let getTotalCountPage = (total) => ({type: GET_TC, totalCountPage : total});
+export let requestTotalCountPage = (total) => ({type: GET_TC, totalCountPage : total});
 
 export let fetching = () => ({type : FETCHING});
 
-export let updateProfile = (data) => ({type : SET_PROFILE, data});
+export let requestProfile = (data) => ({type : SET_PROFILE, data});
 
 export let setAuthUserData = (data, isAuth) => ({type : SET_AUTH_USER_DATA, data, isAuth});
 
@@ -57,3 +56,9 @@ export let following = (userId, isFetching) => ({type : FOLLOWING, userId, isFet
 export let setStatus = (status) => ({type : SET_STATUS, status});
 
 export let login = (userId) => ({type : LOGIN, userId});
+
+export let initialized = () => ({type : INITIALIZED});
+
+export let changePortion = (currentPortion) => ({type : CHANGE_PORTION, currentPortion});
+
+export let updatePhotoSuccess = (photos) => ({type : UPDATE_PHOTO_SUCCESS, photos});

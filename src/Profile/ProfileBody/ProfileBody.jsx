@@ -1,14 +1,18 @@
 import React from "react";
 import classes from "./ProfileBody.module.css";
 import Status from "./Status.jsx";
+import ProfileInfo from "./ProfileInfo.jsx";
+import Avatar from "./Avatar.jsx";
 
 
-const ProfileBody = (props) => {
+const ProfileBody = React.memo((props) => {
 		return <div className={classes.upProfile}>
-  			<img className={classes.ava} src={props.profileData.photos.large} alt="photo"/>
-  			<div>{props.profileData.fullName}</div>
-  			<div><Status status={props.status} updateStatusTC={props.updateStatusTC}/></div>
+			<Avatar selectPhoto={props.selectPhoto} photos={props.photos} isOwner={props.isOwner}/>
+			<ProfileInfo profileData={props.profileData}/>
+  			<div>
+  			<Status isOwner={props.isOwner} status={props.status} updateStatusTC={props.updateStatusTC}/>
+  			</div>
   		</div>
-}
+})
 
 export default ProfileBody;

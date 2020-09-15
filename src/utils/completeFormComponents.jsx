@@ -1,5 +1,6 @@
 import React from 'react';
 import s from "./../Login/Login.module.css";
+import { Field } from "redux-form";
 
 const FormFields = ({meta, input, children, ...props}) => {
 	let errorCreate = meta.error && meta.touched;
@@ -12,11 +13,22 @@ const FormFields = ({meta, input, children, ...props}) => {
 export const Input = (props) => {
 	const {meta, input, childen, ...restProps} = props;
 	let errorCreate = meta.error && meta.touched;
-	return <FormFields {...props}><input className={errorCreate ? s.error : ""} {...input} {...restProps}/></FormFields>
+	return <FormFields {...props}>
+		<input className={errorCreate ? s.error : ""} {...input} {...restProps}/>
+	</FormFields>
 }
 
 export const Textarea = (props) => {
 	const {meta, input, children, ...restProps} = props;
 	let errorCreate = meta.error && meta.touched;
-	return <FormFields {...props}><textarea className={errorCreate ? s.error : ""} {...input} {...restProps}></textarea></FormFields>
+	return <FormFields {...props}>
+		<textarea className={errorCreate ? s.error : ""} {...input} {...restProps}>
+	</textarea></FormFields>
+}
+
+export const createField = (placeholder, component, name, validate, props = {}, text = "") => {
+	 return <div>
+	 <Field component={component} name={name} validate={validate}
+	 placeholder={placeholder} {...props}/> {text}
+	 </div>
 }

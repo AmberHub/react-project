@@ -1,4 +1,38 @@
-.ava {
-	width: 50%;
+label img {
+	position: relative;
+	width: 25%;
 	height: 25%;
+	margin: 0;
+	padding: 0;
+	border-radius: 30vw;
+}
+
+.imgHelper {
+	right: 25%;
+	z-index: 2;
+}
+
+.avaPhoto:hover {
+	cursor: pointer;
+	z-index: -6;
+	-webkit-transition: .4s ease-out;
+     -webkit-transition-delay: 0.7s;
+     -o-transition: .4s ease-out;
+     -o-transition-delay: 0.7s;
+     -moz-transition: .4s ease-out;
+     -moz-transition-delay: 0.7s;
+     transition: .4s ease-out;
+     transition-delay: 0.7s;
+}
+
+.avaPhotoOtherUser {
+	z-index: 3;
+}
+
+.avaPhoto {
+	z-index: 3;
+}
+
+input[type=file] {
+	display: none;
 }

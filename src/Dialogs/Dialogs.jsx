@@ -17,6 +17,10 @@ const DialogsForm = (props) => {
 	</div>
 }
 
+
+let DialogsFormWith = reduxForm( { form : "messageForm" } )(DialogsForm);
+
+
 const Dialogs = (props) => {
 	return (
 	<div className={classes.DialogsWrapper}>
@@ -30,9 +34,5 @@ const Dialogs = (props) => {
 	</div>
 	);
 }
-
-
-
-let DialogsFormWith = reduxForm( { form : "messageForm" } )(DialogsForm)
 
 export default Dialogs;

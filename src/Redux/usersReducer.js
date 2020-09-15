@@ -1,4 +1,5 @@
-import {updateUsers, getTotalCountPage, fetching, follow, changePage, following} from "./actionCreators.js";
+import {requestUsers, requestTotalCountPage, fetching,
+ follow, changePage, following} from "./actionCreators.js";
 import {userAPI} from "./../API/api.js";
 
 
@@ -9,7 +10,8 @@ let initialState = {
 	totalCountPage : 20,
 	currentPage : 1,
 	isFetching : false,
-	followInProgres : [ ]
+	followInProgres : [ ],
+	currentPortion : 1
 };
 
 const usersReducer = ( state = initialState, action) => {
@@ -42,49 +44,53 @@ const usersReducer = ( state = initialState, action) => {
 			return {...state, isFetching: !state.isFetching};
 
 		case "FOLLOWING" : 
-			return {...state, followInProgres : action.isFetching 
-			? [...state.followInProgres, action.userId]
+			return {...state, followInProgres : action.isFetching ? 
+			[...state.followInProgres, action.userId]
 			: state.followInProgres.filter( id => id != action.userId)} ;
+
+			case "CHANGE_PORTION" : 
+			return {...state,
+				currentPortion : action.currentPortion
+			}
 
 		default : return state;
 	}
 
 };
 
-export let setUsersTC = (page, count) => (dispatch) => {
+export let setUsersTC = (page, count) => async (dispatch) => {
 		dispatch(fetching());
-		userAPI.setUsers(page, count).then( data => {
-			dispatch(updateUsers(data.items));
-			dispatch(getTotalCountPage(data.totalCount));
+		let data = await userAPI.setUsers(page, count)
+			dispatch(requestUsers(data.items));
+			dispatch(requestTotalCountPage(data.totalCount));
 			dispatch(fetching());
-		})
 };
 
-export let changePageTC = (page, count) => (dispatch) => {
+export let changePageTC = (page, count) => async (dispatch) => {
 		dispatch(fetching());
-		userAPI.setUsers(page, count).then( data => {
-			dispatch(updateUsers(data.items));
-			dispatch(getTotalCountPage(data.totalCount));
+		let data = await userAPI.setUsers(page, count)
+			dispatch(requestUsers(data.items));
+			dispatch(requestTotalCountPage(data.totalCount));
 			dispatch(changePage(page));
 			dispatch(fetching());
-		})
 }
 
-export let followTC = (isFollow, userId) => (dispatch) => {
+let _followHelper = async (dispatch, option, userId, followAC, followingAC) => {
+	dispatch(followingAC(userId, true));
+	let data = await option(userId)
+	if(data.resultCode === 0) {
+		dispatch(followingAC(userId, false));
+		dispatch(followAC(userId))
+	}
+}
+
+export let followTC = (isFollow, userId) => async (dispatch) => {
 	dispatch(following(userId, true));
 	if (isFollow === false) {
-		userAPI.unfollow(userId).then( data => {
-		if(data.resultCode === 0) {
-			dispatch(following(userId, false));
-			dispatch(follow(userId))
-		}})
-	} else if (isFollow === true) {
-		userAPI.follow(userId).then( data => {
-			if(data.resultCode === 0) {
-				dispatch(following(userId, false));
-				dispatch(follow(userId))
-			}})
-	}
+			_followHelper(dispatch, userAPI.unfollow.bind(userAPI), userId, follow, following)
+		} else if (isFollow === true) {
+			_followHelper(dispatch, userAPI.follow.bind(userAPI), userId, follow, following)
+		}
 }
 
 

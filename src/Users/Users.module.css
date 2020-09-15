@@ -10,14 +10,6 @@
 	border-radius: 50%;
 }
 
-.currentPageNumber {
-	font-weight: bold;
-}
-
-.noneDisplay {
-	display: none;
-}
-
 .nav {
 	text-decoration: none;
 	color: black;

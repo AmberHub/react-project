@@ -19,14 +19,14 @@ const PostForm = (props) => {
 }
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
 	return <div>
 		<div className={classes.posts}>
 			<PostFormWith onSubmit={props.onSubmit} />
 			{props.Posts}
 		</div>
 	</div>
-}
+})
 
 let PostFormWith = reduxForm( { form : "postForm" } )(PostForm);
 

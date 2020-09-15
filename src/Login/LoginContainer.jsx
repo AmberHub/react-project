@@ -2,20 +2,19 @@ import React from 'react';
 import Login from "./Login.jsx";
 import { loginTC } from "./../Redux/authReducer.js";
 import { connect } from "react-redux";
+import { reset } from "redux-form";
 
 
-class LoginContainer extends React.Component {
+const LoginContainer = (props) => {
 
-  render = () => {
-    return <Login {...this.props} />
-  };
+    return <Login {...props} />
+
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => ({
+    isAuth : state.Auth.isAuth
+});
 
 
-};
-
-
-export default connect(mapStateToProps, { loginTC } )(LoginContainer)
+export default connect(mapStateToProps, { loginTC, reset } )(LoginContainer)
 

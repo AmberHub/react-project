@@ -1,57 +1,52 @@
-import React from "react";
-import {Field} from "redux-form";
-import {Input} from "./../../utils/completeFormComponents.jsx";
-import {require} from "./../../utils/validate.js";
+import React, { useState, useEffect } from "react";
+import { Field } from "redux-form";
+import { Input } from "./../../utils/completeFormComponents.jsx";
+import { require } from "./../../utils/validate.js";
+import { reduxForm } from "redux-form";
 
 
-class Status extends React.Component {
+const Status = (props) => {
 
-	componentDidUpdate = (prevProps, prevState) => {
-		if(prevProps.status !== this.props.status) {
-			this.setState({
-			status: this.props.status
-		})}
+	useEffect( () => {
+		setStatus(props.status)
+	}, [props.status])
+
+
+	let [editMode, setEditMode] = useState(false);
+
+	let [status, setStatus] = useState(props.status);
+
+	let onChangeStatus = (e) => {
+		setStatus(e.status)
 	}
 
-	state = {
-		editMode : false,
-		status : this.props.status
+	let forEditStatus = () => {
+		if(props.isOwner)
+		setEditMode(true)
 	}
 
-	onChangeStatus = (e) => {
-		this.setState({
-			status : e.currentTarget.value
-		})
+	let statusEdited = () => {
+		setEditMode(false);
+		props.updateStatusTC(status)
 	}
 
-	forEditStatus = () => {
-		this.setState({
-			editMode : true
-		})
-		
-	}
-
-	statusEdited = () => {
-		this.setState({
-			editMode : false
-		})
-		this.props.updateStatusTC(this.state.status)
-	}
-
-	render = () => {
-		return <div>
-			{ this.state.editMode ? <StatusFrom onChange={this.onChangeStatus} onBlur={this.statusEdited}
-			 value={this.state.status} autoFocus={true} onDoubleClick={this.statusEdited}/> 
-			: <span onDoubleClick={this.forEditStatus}>{this.props.status}</span> }
+	return <div>
+			{ editMode ? <StatusFromWith onChange={onChangeStatus} onBlur={statusEdited}
+			 initialValues={{status : status}} onDoubleClick={statusEdited} onSubmit={true}/> 
+			: <span onDoubleClick={forEditStatus}>{props.status ? props.status : "---"}</span> }
 		</div>
-	}
 }
 
 
 const StatusFrom = (props) => {
-	return <form >
-		<Field name="status" component={Input} validate={[ require ]}  />
+	return <form onSubmit={props.handleSubmit}>
+		<Field name="status" component={Input} validate={[ require ]} onBlur={props.onBlur}
+			 value={props.initialValues.status} autoFocus={true} onDoubleClick={props.onDoubleClick} />
 	</form>
 }
+
+
+let StatusFromWith = reduxForm({ form : "status" })(StatusFrom);
+
 
 export default Status;
