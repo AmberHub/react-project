@@ -5,7 +5,7 @@ import { require } from "./../../utils/validate.js";
 import { reduxForm } from "redux-form";
 
 
-const Status = (props) => {
+const Status = React.memo((props) => {
 
 	useEffect( () => {
 		setStatus(props.status)
@@ -35,7 +35,7 @@ const Status = (props) => {
 			 initialValues={{status : status}} onDoubleClick={statusEdited} onSubmit={true}/> 
 			: <span onDoubleClick={forEditStatus}>{props.status ? props.status : "---"}</span> }
 		</div>
-}
+})
 
 
 const StatusFrom = (props) => {

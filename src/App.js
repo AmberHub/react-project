@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import HeaderContainer from './Header/HeaderContainer.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
@@ -13,14 +13,15 @@ import Preloader from "./utils/Preloader.jsx";
 import {initialized} from "./Redux/actionCreators.js";
 import {isAuthTC} from "./Redux/authReducer.js";
 import {connect} from "react-redux"
+import { initializeAppTC } from "./Redux/appReducer.js";
 
-class App extends React.Component {
-  componentDidMount = () => {
-    this.props.initializeApp()
-  }
+const App = (props) => {
 
-  render = () => {
-    if(!this.props.initialized) {
+  useEffect( () => {
+    props.initializeAppTC()
+  }, [])
+
+    if(!props.initialized) {
       return <Preloader />
     }
 
@@ -36,19 +37,12 @@ class App extends React.Component {
         <Route path="/login" render={() => <LoginContainer />  }/>
       </div>
     </div>
-  }
   
 }
 
-export const initializeApp = () => (dispatch) => {
-  let promise = dispatch(isAuthTC());
-  promise.then( () => {
-    dispatch(initialized())
-  })
-}
 
 const mapStateToProps = (state) => ({
   initialized : state.app.appInitialized
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default connect(mapStateToProps, { initializeAppTC })(App);

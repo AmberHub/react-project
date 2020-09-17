@@ -1,16 +1,18 @@
 import { profileAPI } from "./../API/api.js";
 import { updatePhotoSuccess, requestProfile,
- fetching, setStatus, updateStatus } from "./actionCreators.js";
-
+ fetching, setStatus, updateStatus, updateProfileSuccess, setEditMode } from "./actionCreators.js";
+import { stopSubmit } from "redux-form";
 
 
 let initialState = {
 
 	profileData : null,
-	PostsData : [{message:"Hi"}],
+	PostsData : [{message:"Hi", id : 1}],
 	isFetching : false,
 	status : "",
-	photos : {large : null, small : null}
+	photos : {large : null, small : null},
+	isOwner : false,
+	editMode : false
 }
 
 
@@ -36,6 +38,15 @@ const profileReducer = (state=initialState, action) => {
 		case "UPDATE_PHOTO_SUCCESS" : 
 		return {...state, photos : action.photos}
 
+		case "UPDATE_PROFILE_SUCCESS" : 
+		return {...state, profileData : action.values}
+
+		case "IS_OWNER" : 
+		return {...state, isOwner : action.isOwner}
+
+		case "SET_EDIT_MODE" : 
+		return {...state, editMode : action.editMode}
+
 		default : return state;
 	};
 
@@ -55,8 +66,23 @@ export let setProfileTC = (userId, isAuth, myId) => async (dispatch) => {
     		dispatch(fetching());
 }
 
-export let setStatusTC = (userId) => async (dispatch) => {
-	let status = await profileAPI.getStatus(userId)
+export let updateProfileTC = (values, myId) => async (dispatch) => {
+	let data = await profileAPI.updateProfile(values)
+	if(data.resultCode === 0) {
+		let data = await profileAPI.setProfile(myId)
+			dispatch(updateProfileSuccess(data))
+			dispatch(setEditMode(false))
+	} else {
+		dispatch(stopSubmit("profileInfo", { _error : data.messages[0]}));
+		dispatch(setEditMode(true))
+	}
+}
+
+export let setStatusTC = (userId, myId) => async (dispatch) => {
+		if(!userId)
+			userId = myId;
+
+		let status = await profileAPI.getStatus(userId)
       dispatch(setStatus(status));
 }
 

@@ -8,7 +8,7 @@ const Header = (props) => {
   		<img src="http://icons.iconarchive.com/icons/blackvariant/button-ui-system-apps/1024/Terminal-icon.png"/>
 
   		{props.isAuth ? <Logged {...props} /> : 
-  		<NavLink className={classes.login} to={"/login/me"}>Login</NavLink>}
+  		<NavLink className={classes.login} to={"/login"}>Login</NavLink>}
   	</header>
   );
 }

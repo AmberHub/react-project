@@ -8,39 +8,43 @@ import { createField } from "./../utils/completeFormComponents"
 import {Input} from "./../utils/completeFormComponents.jsx";
 
 
-class Login extends React.Component {
+const Login = (props) => {
 
-	onSubmit = (values) => {
-   		this.props.loginTC(values.email, values.password, values.rememberMe);
-   		this.props.reset("login");
+	let onSubmitLogin = (values) => {
+   		props.loginTC(values.email, values.password, values.rememberMe, values.captcha);
+   		props.reset();
 	}
 
-	render = () => {
-	if (this.props.isAuth)
+	if (props.isAuth)
 		return <Redirect to={"/profile"} />
 
 	return <div>
 		<h1>login</h1>
-		<LoginFormWith onSubmit={this.onSubmit} />
+		<LoginFormWith captchaUrl={props.captchaUrl} onSubmit={onSubmitLogin} />
 	</div>
-	} 
 }
 
 
 const LoginForm = (props) => {
 	return <div>
 		<form onSubmit={props.handleSubmit}>
+		<span className={props.error ? "" : s.noneDisplay}>{props.error}</span>
 				{createField("login", Input, "email", [require])}
 				{createField("password", Input, "password", [require], {type : "password"})}
 				{createField(null, Input, "rememberMe", null, {type : "checkbox"}, "Remember me")}
+				{props.captchaUrl &&
+				 <div>
+					<img src={props.captchaUrl} alt="captcha" />
+					{createField("Captcha", Input, "captcha", [require])}
+				</div>}
 			<div>
 				<button type="submit">Sign In</button>
 			</div>
-			<span className={props.error ? "" : s.noneDisplay}>{props.error}</span>
 		</form>
-			<a href="https://social-network.samuraijs.com/signUp"><button>Sign Up</button></a>
+		<a href="https://social-network.samuraijs.com/signUp"><button>Sign Up</button></a>
 	</div>
 }
+
 
 let LoginFormWith = reduxForm( { form : "login" } )(LoginForm);
 

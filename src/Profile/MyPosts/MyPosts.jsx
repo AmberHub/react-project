@@ -22,7 +22,7 @@ const PostForm = (props) => {
 const MyPosts = React.memo((props) => {
 	return <div>
 		<div className={classes.posts}>
-			<PostFormWith onSubmit={props.onSubmit} />
+			{props.isOwner && <PostFormWith onSubmit={props.onSubmit} />}
 			{props.Posts}
 		</div>
 	</div>

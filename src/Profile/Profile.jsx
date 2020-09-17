@@ -12,7 +12,7 @@ const Profile = (props) => {
   			status={props.status} updateStatusTC={props.updateStatusTC}/>
   		</div>
   		<div className={classes.MyPosts}>
-  			<MyPostsContainer reset={props.reset}/>
+  			<MyPostsContainer />
   		</div>
   	</div>
 }

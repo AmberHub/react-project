@@ -1,14 +1,15 @@
 import React from "react";
 import classes from "./ProfileBody.module.css";
 import Status from "./Status.jsx";
-import ProfileInfo from "./ProfileInfo.jsx";
+import ProfileInfoContainer from "./ProfileInfoContainer.jsx";
 import Avatar from "./Avatar.jsx";
 
 
 const ProfileBody = React.memo((props) => {
 		return <div className={classes.upProfile}>
 			<Avatar selectPhoto={props.selectPhoto} photos={props.photos} isOwner={props.isOwner}/>
-			<ProfileInfo profileData={props.profileData}/>
+			<div>{props.profileData.fullName}</div>
+			<ProfileInfoContainer />
   			<div>
   			<Status isOwner={props.isOwner} status={props.status} updateStatusTC={props.updateStatusTC}/>
   			</div>

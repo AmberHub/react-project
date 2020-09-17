@@ -30,6 +30,13 @@ const CHANGE_PORTION = "CHANGE_PORTION";
 
 const UPDATE_PHOTO_SUCCESS = "UPDATE_PHOTO_SUCCESS";
 
+const UPDATE_PROFILE_SUCCESS = "UPDATE_PROFILE_SUCCESS";
+
+const IS_OWNER = "IS_OWNER";
+
+const SET_EDIT_MODE = "SET_EDIT_MODE";
+
+const GET_CAPTCHA = "GET_CAPTCHA";
 
 
 
@@ -62,3 +69,11 @@ export let initialized = () => ({type : INITIALIZED});
 export let changePortion = (currentPortion) => ({type : CHANGE_PORTION, currentPortion});
 
 export let updatePhotoSuccess = (photos) => ({type : UPDATE_PHOTO_SUCCESS, photos});
+
+export let updateProfileSuccess = (values) => ({type : UPDATE_PROFILE_SUCCESS, values});
+
+export let changeIsOwner = (isOwner) => ({type : IS_OWNER, isOwner});
+
+export let setEditMode = (editMode) => ({type : SET_EDIT_MODE, editMode});
+
+export let setCaptcha = (url) => ({type : GET_CAPTCHA, url})

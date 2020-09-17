@@ -17,3 +17,11 @@ export const getStatus = (state) => {
 export const getPhotos = (state) => {
 	return state.Profile.photos
 }
+
+export const getIsOwner = (state) => {
+	return state.Profile.isOwner
+}
+
+export const getEditMode = (state) => {
+	return state.Profile.editMode
+}

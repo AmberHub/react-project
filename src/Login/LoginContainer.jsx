@@ -3,6 +3,7 @@ import Login from "./Login.jsx";
 import { loginTC } from "./../Redux/authReducer.js";
 import { connect } from "react-redux";
 import { reset } from "redux-form";
+import { getIsAuth, getCaptchaUrl } from "./../Selectors/authSelectors.js";
 
 
 const LoginContainer = (props) => {
@@ -12,7 +13,8 @@ const LoginContainer = (props) => {
 }
 
 let mapStateToProps = (state) => ({
-    isAuth : state.Auth.isAuth
+    isAuth : getIsAuth(state),
+    captchaUrl : getCaptchaUrl(state)
 });
 
 

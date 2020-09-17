@@ -5,10 +5,11 @@ import classes from "./Post.module.css";
 import { addPost } from "./../../Redux/actionCreators.js";
 import { reset } from "redux-form";
 import Post from "./Post.jsx";
-import { getPostData } from "./../../Selectors/profileSelectors.js"
+import { getPostData, getIsOwner } from "./../../Selectors/profileSelectors.js"
 
 
 const MyPostsContainer = (props) => {
+
 	let onSubmit = (values) => {
 		props.addPost(values.post);
 		props.reset("postForm");
@@ -19,9 +20,10 @@ const MyPostsContainer = (props) => {
 
 
 let mapStateToProps = (state) => ({
-		Posts : getPostData(state).map(p => <Post photo={state.Profile.photos} PostText={p.message} key={p.id}/>)
+		Posts : getPostData(state).map(p => <Post photo={state.Profile.photos} PostText={p.message} key={p.id}/>),
+		isOwner : getIsOwner(state)
 })
 
 
 
-export default connect(mapStateToProps, { addPost, reset })(MyPostsContainer);;
+export default connect(mapStateToProps, { addPost, reset })(MyPostsContainer);
