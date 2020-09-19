@@ -35,17 +35,24 @@ const authReducer = (state=initialState, action) => {
 
 export let isAuthTC = () => async (dispatch) => {
 	let data = await authAPI.isAuthed();
-		if(data.resultCode === 0)
+		if(data.resultCode === 0) {
 			dispatch(setAuthUserData(data.data, true))
+		}
+
 }
 
 export let loginTC = ( email, password, rememberMe, captcha ) => async (dispatch) => {
 	let data = await authAPI.login( email, password, rememberMe, captcha )
+	debugger
 		if(data.resultCode === 0) {
 			let data = await authAPI.isAuthed()
 		if(data.resultCode === 0) {
 			dispatch(setAuthUserData(data.data, true))
-		}}
+		}else if (data.resultCode === 1) {
+			dispatch(stopSubmit("login", { _error : data.messages ? "Please check your API KEY in scr/API_KEY.js" : "something went wrong"}))
+			return true
+		}
+	}
 		if(data.resultCode === 10) {
 			getCaptchaTC(dispatch)
 			dispatch(stopSubmit("login", { _error : data.messages ? data.messages : "something went wrong"}))

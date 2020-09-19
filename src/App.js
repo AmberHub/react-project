@@ -8,7 +8,7 @@ import News from './News/News.jsx';
 import Friends from './Friends/Friends.jsx';
 import UsersContainer from './Users/UsersContainer.jsx';
 import LoginContainer from "./Login/LoginContainer.jsx";
-import {Route} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import Preloader from "./utils/Preloader.jsx";
 import {initialized} from "./Redux/actionCreators.js";
 import {isAuthTC} from "./Redux/authReducer.js";
@@ -29,12 +29,15 @@ const App = (props) => {
       <HeaderContainer />
       <Sidebar />
       <div className="main__content">
-        <Route path="/profile/:userId?" render={() => <ProfileContainer  />  }/>
+        <Switch>
+        <Route exact path="/" render={() => <Redirect to="/profile" />  }/>
+        <Route path="/login" render={() => <LoginContainer />  }/>
         <Route path="/dialogs" render={() => <DialogsContainer />  }/>
         <Route path="/friends" render={() => <Friends/>  }/>
         <Route path="/news" render={() => <News/>  }/>
         <Route path="/users" render={() => <UsersContainer />  }/>
-        <Route path="/login" render={() => <LoginContainer />  }/>
+        <Route path="/profile/:userId?" render={() => <ProfileContainer  />  }/>
+        </Switch>
       </div>
     </div>
   
