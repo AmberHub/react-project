@@ -1,14 +1,18 @@
 label img {
 	position: relative;
-	width: 25%;
-	height: 25%;
+	width: 20em;
+	height: 20em;
 	margin: 0;
 	padding: 0;
-	border-radius: 30vw;
+	border-radius: 1000%;
+}
+
+label {
+	display: flex;
 }
 
 .imgHelper {
-	right: 25%;
+	right: 20em;
 	z-index: 2;
 }
 
@@ -16,13 +20,13 @@ label img {
 	cursor: pointer;
 	z-index: -6;
 	-webkit-transition: .4s ease-out;
-     -webkit-transition-delay: 0.7s;
+     -webkit-transition-delay: 0.5s;
      -o-transition: .4s ease-out;
-     -o-transition-delay: 0.7s;
+     -o-transition-delay: 0.5s;
      -moz-transition: .4s ease-out;
-     -moz-transition-delay: 0.7s;
+     -moz-transition-delay: 0.5s;
      transition: .4s ease-out;
-     transition-delay: 0.7s;
+     transition-delay: 0.5s;
 }
 
 .avaPhotoOtherUser {

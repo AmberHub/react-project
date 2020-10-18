@@ -26,9 +26,12 @@ export const Textarea = (props) => {
 	</textarea></FormFields>
 }
 
+export const TextareaWithoutErrorCreator = (props) => {
+	const {meta, input, children, ...restProps} = props;
+	return <textarea {...input} {...restProps}></textarea>
+}
+
 export const createField = (placeholder, component, name, validate, props = {}, text = "") => {
-	 return <div>
-	 	<Field component={component} name={name} validate={validate}
-		placeholder={placeholder} {...props}/> {text}
-	 </div>
+	 return <> <Field component={component} name={name} validate={validate}
+		placeholder={placeholder} {...props}/> {text} </>
 }

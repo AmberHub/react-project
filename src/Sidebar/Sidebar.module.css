@@ -4,7 +4,7 @@
 }
 
 .nav {
-	padding: 1vw;
+	padding: 2em;
 }
 
 .item {
@@ -14,4 +14,21 @@
 }
 .active {
 	color: black;
+}
+
+.countContainer {
+	display: inline-block;
+	border-radius: 1000%;
+	background: white;
+	width: 1.2em;
+	height: 1.2em;
+	text-align: center;
+	margin-left: 0.5em;
+}
+
+.count {
+	position: relative;
+	color: black;
+	display: inline-block;
+	font-weight: 700;
 }

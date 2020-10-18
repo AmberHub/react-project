@@ -1,0 +1,61 @@
+.MessagesWrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 8fr;
+}
+
+.form textarea {
+	overflow-y: hidden;
+	resize: none;
+	height: 3em;
+}
+
+textarea:focus {
+	border: none;
+}
+
+.form {
+	display: grid;
+	grid-template-rows: 100%;
+	grid-template-columns: 8fr 2fr;
+
+}
+
+.messages {
+	width: 85vw;
+	height: 75vh;
+	background: grey;
+	overflow-y: scroll;
+}
+
+.columnWrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	grid-template-areas: 
+	"someone my";
+	word-wrap: break-word
+}
+
+.myMessage {
+	grid-area: my;
+	grid-template-columns: 100%;
+	display: grid;
+}
+
+.someoneMessage {
+	grid-area: someone;
+	grid-template-columns: 100%;
+	display: grid;
+}
+
+.messageBody {
+	display: inline;
+	background: white;
+	margin-bottom: 2em;
+	border-radius: 2em;
+	padding: 0.7em;
+}
+
+.infoWrapper {
+
+}
