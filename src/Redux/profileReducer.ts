@@ -14,9 +14,9 @@ const IS_OWNER = "IS_OWNER";
 
 type UpdatePhotoSuccessACType = {
     type: typeof UPDATE_PHOTO_SUCCESS
-    photos?: PhotosType
+    photos: PhotosType | null
 }
-export let updatePhotoSuccess = (photos?: PhotosType): UpdatePhotoSuccessACType => ({
+export let updatePhotoSuccess = (photos: PhotosType | null): UpdatePhotoSuccessACType => ({
     type: UPDATE_PHOTO_SUCCESS,
     photos
 })
@@ -46,10 +46,7 @@ type UpdateProfileSuccessACType = {
     type: typeof UPDATE_PROFILE_SUCCESS
     values: ProfileDataType
 }
-export let updateProfileSuccess = (values: ProfileDataType): UpdateProfileSuccessACType => ({
-    type: UPDATE_PROFILE_SUCCESS,
-    values
-});
+export let updateProfileSuccess = (values: ProfileDataType): UpdateProfileSuccessACType => ({type: UPDATE_PROFILE_SUCCESS, values});
 
 
 type SetEditModeACType = {
@@ -85,7 +82,7 @@ let initialState = {
     PostsData: [{post: "Hi", id: 1}] as Array<PostDataType>,
     isFetching: false,
     status: "",
-    photos: {large: null, small: null} as PhotosType | undefined,
+    photos: {large: null, small: null} as PhotosType | null,
     isOwner: false,
     editMode: false
 }
@@ -143,7 +140,7 @@ export let setProfileTC = (userId: number, isAuth: boolean, myId: number) => asy
     dispatch(fetching());
 }
 
-export let updateProfileTC = (values: ProfileDataType, myId: number | null) => async (dispatch: Function) => {
+export let updateProfileTC = (values: Object, myId: number | null) => async (dispatch: Function) => {
     let data = await profileAPI.updateProfile(values)
     if (data.resultCode === 0) {
         let data = await profileAPI.setProfile(myId)

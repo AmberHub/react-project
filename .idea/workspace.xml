@@ -3,8 +3,60 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="31db3d0f-ef07-49ba-b29d-840cb72b5b59" name="Default Changelist" comment="" />
+    <list default="true" id="31db3d0f-ef07-49ba-b29d-840cb72b5b59" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Friends/FriendsContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Redux/friendsReducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Selectors/friendsSelectors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/API/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dialogs/Dialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dialogs/Messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dialogs/Messages/Messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dialogs/Messages/MessagesContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dialogs/Messages/MessagesContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Friends/Friends.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/Friends.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Friends/Friends.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/Friends.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HOC/AuthHOC.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/HOC/AuthHOC.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/LoginContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/LoginContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/MyPosts/MyPostsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/MyPosts/MyPostsContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/MyPosts/Post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/MyPosts/Post.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/ProfileBody/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/ProfileBody/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/ProfileBody/ProfileBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/ProfileBody/ProfileBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/ProfileBody/ProfileInfoContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/ProfileBody/ProfileInfoContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Profile/ProfileContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile/ProfileContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/profileReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/profileReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/redux-store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/redux-store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/usersReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/usersReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/UsersContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Paginator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Paginator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/types.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +87,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="ts.external.directory.path" value="C:\Users\Любомир\Desktop\react\first-again\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -57,12 +109,32 @@
       <workItem from="1602702639758" duration="4873000" />
       <workItem from="1602765065893" duration="13228000" />
       <workItem from="1602841179637" duration="4720000" />
-      <workItem from="1603042904150" duration="5787000" />
+      <workItem from="1603042904150" duration="6556000" />
+      <workItem from="1603196062336" duration="627000" />
+      <workItem from="1603629391927" duration="16353000" />
+      <workItem from="1604235532754" duration="151000" />
+      <workItem from="1604235750908" duration="244000" />
+      <workItem from="1604236056690" duration="2564000" />
+      <workItem from="1604309977430" duration="11756000" />
+      <workItem from="1604410929118" duration="14414000" />
+      <workItem from="1604483831422" duration="1863000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602612045455">
@@ -73,18 +145,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602674076627" />
-    <state x="184" y="9" key="SettingsEditor" timestamp="1602674125695">
+    <state x="184" y="9" key="SettingsEditor" timestamp="1604236868402">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1602674125695" />
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1604236868402" />
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603642069168">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1603642069168" />
     <state x="459" y="136" key="refactoring.ChangeSignatureDialog" timestamp="1602622527413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="459" y="136" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1602622527413" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1603044433991">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1603653724994">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1603044433991" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1603653724994" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

@@ -1,6 +1,6 @@
 import React, {useEffect, ChangeEvent} from 'react';
 import Profile from "./Profile";
-import Preloader from "../utils/Preloader.js";
+import Preloader from "../utils/Preloader";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {
@@ -30,7 +30,7 @@ type ConnectedPropsType = {
     status: string | null
     isAuth: boolean
     myId: number | null
-    photos: PhotosType
+    photos: PhotosType | null
     isOwner: boolean
 }
 
@@ -58,7 +58,6 @@ const ProfileContainer: React.FC<PropsType> = ({updatePhotoTC, setProfileTC, isA
                                                    match, isOwner, profileData, ...props}) => {
 
     useEffect(() => {
-        debugger
         setProfileTC(match.params.userId,
             isAuth, myId);
         setStatusTC(match.params.userId, myId);

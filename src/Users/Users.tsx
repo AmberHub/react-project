@@ -27,7 +27,8 @@ const Users: React.FC<PropsType> = ({totalCountPage, count, currentPage, changeP
 										changePortion, currentPortion, users,
 										followInProgress, followTC, ...props}) => {
 	return <div>
-		<Paginator totalCountPage={totalCountPage} count={count} currentPage={currentPage} changePage={changePage} portionSizeFromProps={5} changePortion={changePortion} currentPortionFromProps={currentPortion}/>
+		<Paginator totalCountPage={totalCountPage} count={count} currentPage={currentPage} changePage={changePage}
+				   portionSizeFromProps={5} changePortion={changePortion} currentPortionFromProps={currentPortion}/>
 		{
 			users.map( u => <div key={u.id} className={classes.userItem}><NavLink className={classes.nav} to={`/profile/${u.id}`}>
 			<img className={classes.avatar} src={u.photos.small ? u.photos.small : defaultPhoto} alt="photo"/>

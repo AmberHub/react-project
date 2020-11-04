@@ -3,16 +3,16 @@ import classes from "./Sidebar.module.css";
 import {NavLink} from "react-router-dom";
 
 type NavItemPropsType = {
-    to: string
+    path: string
     name: string
     newDialogsCount?: number | null
 }
 
-const NavItem: React.FC<NavItemPropsType> = ({to, name, newDialogsCount}) => {
+const NavItem: React.FC<NavItemPropsType> = ({path, name, newDialogsCount}) => {
     return (
-        <NavLink to={to} activeClassName={classes.active} className={classes.item}>{name}
-            {newDialogsCount &&
-            <div className={classes.countContainer}><span className={classes.count}>5</span></div>
+        <NavLink to={path} activeClassName={classes.active} className={classes.item}>{name}
+            {newDialogsCount ?
+            <div className={classes.countContainer}><span className={classes.count}>5</span></div> : ""
             }
         </NavLink>
     );
@@ -26,11 +26,11 @@ const Sidebar: React.FC<SidebarPropsType> = ({newDialogsCount}) => {
     return (
         <div className={classes.sidebar}>
             <nav className={classes.nav}>
-                <NavItem name="Profile" to="/profile"/>
-                <NavItem name="Dialogs" to="/dialogs" newDialogsCount={newDialogsCount}/>
-                <NavItem name="Friends" to="/friends"/>
-                <NavItem name="News" to="/news"/>
-                <NavItem name="Users" to="/users"/>
+                <NavItem name="Profile" path="/profile"/>
+                <NavItem name="Dialogs" path="/dialogs" newDialogsCount={newDialogsCount}/>
+                <NavItem name="Friends" path="/friends"/>
+                <NavItem name="News" path="/news"/>
+                <NavItem name="Users" path="/users"/>
             </nav>
         </div>
     );

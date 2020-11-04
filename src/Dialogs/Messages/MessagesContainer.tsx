@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { withAuth } from "../../HOC/AuthHOC"
 import { compose } from "redux"
 import { reset } from "redux-form"
-import Preloader from "../../utils/Preloader.js"
+import Preloader from "../../utils/Preloader"
 import { getIsAuth, getUserId } from "../../Selectors/authSelectors"
 import { getDialogMessageData, getIsFetching } from "../../Selectors/dialogSelectors"
 import { sendMessageTC, getMessagesListTC,
@@ -49,7 +49,7 @@ export type ValuesType = {
 
 
 
-const DialogsContainer: React.FC<PropsType> = ({isFetching, reset, startChattingTC, sendMessageTC, getMessagesListTC, ...props}) => {
+const MessagesContainer: React.FC<PropsType> = ({isFetching, reset, startChattingTC, sendMessageTC, getMessagesListTC, ...props}) => {
 
 	useEffect( () => {
 		getMessagesListTC(props.match.params.userId)
@@ -82,4 +82,4 @@ export default compose(
 	connect<ConnectedPropsForAuthType, DispatchPropsForAuthType, OwnPropsType, AppStateType>(authMapStateToProps, { }),
 	withRouter,
 	withAuth
-	)(DialogsContainer);
+	)(MessagesContainer);

@@ -16,7 +16,7 @@ type ConnectedPropsType = {
 
 type DispatchPropsType = {
 	loginTC : (	email : string | null, password : string | null,
-		rememberMe : boolean, captcha : string | null) => void
+		rememberMe : boolean, captcha?: string) => void
 	
 	reset : (formName: string) => void
 	checkNewDialogsTC : () => void
@@ -30,7 +30,7 @@ export type ValuesSubmitType = {
 	email : string | null
 	password : string | null
 	rememberMe : boolean
-	captcha : string | null
+	captcha?: string
 }
 
 const LoginContainer: React.FC<PropsType> = ({loginTC, checkNewDialogsTC, ...props}) => {

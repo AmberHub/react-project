@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom"
-import Preloader from "../utils/Preloader.js";
+import Preloader from "../utils/Preloader";
 import defaultPhoto from "./../img/defaultPhoto.jpg";
 import {DialogType} from '../utils/types';
 

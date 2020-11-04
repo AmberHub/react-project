@@ -6,12 +6,14 @@ import { PhotosType } from "../../utils/types"
 
 type PropsType = {
 	isOwner : boolean
-	photos : PhotosType
+	photos: PhotosType | null
 
 	selectPhoto : (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Avatar: React.FC<PropsType> = ({isOwner, selectPhoto, photos}) => {
+	if(photos === null)
+		photos = {large: null, small: null}
 	return 	<div>
 		{isOwner &&
 			<input type="file" name="file" id="file" onChange={selectPhoto}/>

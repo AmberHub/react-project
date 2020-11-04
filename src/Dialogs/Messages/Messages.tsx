@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./Messages.module.css";
 import {reduxForm, InjectedFormProps} from "redux-form";
-import Preloader from "../../utils/Preloader.js";
+import Preloader from "../../utils/Preloader";
 import { createField, TextareaWithoutErrorCreator } from "../../utils/completeFormComponents";
 import { require } from "../../utils/validate";
 import { MessageType } from '../../utils/types';

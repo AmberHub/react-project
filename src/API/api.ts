@@ -20,7 +20,7 @@ type isAuthDataType = {
 	resultCode: number
 	messages: Array<string>
 	data: {
-		userId: number
+		id: number
 		email: string
 		login: string
 	}
@@ -42,9 +42,10 @@ type PhotosDataType = {
 	}
 }
 
-type UsersDataType = {
-	items : Array<UsersType>
+export type UsersDataType = {
+	items : Array<UsersType> | null
 	totalCount : number
+	error : string | null
 }
 
 type MessageDataType = {
@@ -65,9 +66,8 @@ export const userAPI = {
 		return instance.post<CommonResponseType>(`follow/${userId}`).then( response => response.data )
 	},
 
-	setUsers(page : number, count : number, term?: string, friend?: boolean) {
-		return instance.get<UsersDataType>(`users?page=${page}&count=${count}`)
-		.then( response => response.data )
+	setUsers(page : number, count : number, term?: string) {
+		return instance.get<UsersDataType>(`users?page=${page}&count=${count}`).then( response => response.data )
 	}
 }
 
@@ -90,7 +90,7 @@ export const profileAPI = {
 		return instance.get<ProfileDataType>(`profile/${userId}`).then( response => response.data )
 	},
 
-	updateProfile(values: ProfileDataType) {
+	updateProfile(values: Object) {
 		return instance.put<CommonResponseType>(`profile`, values).then( response => response.data )
 	},
 
@@ -164,5 +164,11 @@ export const dialogsAPI = {
 export const securityAPI = {
 	getCaptcha() {
 		return instance.get<CaptchaDataType>("security/get-captcha-url").then( response => response.data )
+	}
+}
+
+export const friendsAPI = {
+	requestFriends(page : number, count : number, searchName?: string) {
+		return instance.get<UsersDataType>(`users?page=${page}&count=${count}&friend=true&term=${searchName ? searchName : ""}`).then( response => response.data )
 	}
 }

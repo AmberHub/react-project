@@ -3,8 +3,8 @@ import { rootReducerType } from "../Redux/redux-store"
 export type AppStateType = ReturnType<rootReducerType>
 
 export type PhotosType = {
-	large : string | null
-	small : string | null
+	large: string | null
+	small: string | null
 }
 
 export type ProfileDataType = {
@@ -14,7 +14,7 @@ export type ProfileDataType = {
 	fullName: string
 	aboutMe : string | null
 	contacts: contactsType
-	photos?: PhotosType
+	photos: PhotosType | null
 }
 
 export type PostDataType = {

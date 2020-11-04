@@ -2,10 +2,10 @@ import {connect} from "react-redux";
 import React from 'react';
 import MyPosts from "./MyPosts";
 import classes from "./Post.module.css";
-import { addPost } from "./../../Redux/profileReducer";
+import { addPost } from "../../Redux/profileReducer";
 import { reset } from "redux-form";
-import { getPostData, getIsOwner, getPhotos } from "./../../Selectors/profileSelectors"
-import { AppStateType, PostDataType, PhotosType  } from "./../../utils/types"
+import { getPostData, getIsOwner, getPhotos } from "../../Selectors/profileSelectors"
+import { AppStateType, PostDataType, PhotosType  } from "../../utils/types"
 
 
 type PropsType = ConnectedPropsType & OwnPropsType & DispatchPropsType
@@ -13,7 +13,7 @@ type PropsType = ConnectedPropsType & OwnPropsType & DispatchPropsType
 type ConnectedPropsType = {
 	Posts : Array<PostDataType>
 	isOwner : boolean
-	photos : PhotosType
+	photos: PhotosType | null
 }
 
 type OwnPropsType = {

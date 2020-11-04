@@ -1,9 +1,9 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import {changePortion, follow, requestUsers, changePage, requestTotalCountPage,
- fetching, following, setUsersTC, followTC, changePageTC} from "../Redux/usersReducer"
+ fetching, following, setUsersTC, followTC} from "../Redux/usersReducer"
 import Users from "./Users"
-import Preloader from "../utils/Preloader.js"
+import Preloader from "../utils/Preloader"
 import { compose } from "redux"
 import { withAuth } from "../HOC/AuthHOC"
 import { getUsers, getPage, getCount,
@@ -32,8 +32,7 @@ type ConnectedPropsForAuthType = {
 }
 
 type DispatchPropsType = {
-	setUsersTC : (page: number, count: number) => void
-	changePageTC : (page: number, count: number) => void
+	setUsersTC : (page: number, count: number, isChangingPage : boolean) => void
 	requestUsers : (newUsers : Array<UsersType>) => void
 	changePage : (page : number) => void
 	changePortion : () => void
@@ -52,15 +51,16 @@ type DispatchPropsForAuthType = {
 }
 
 
-const UsersContainer: React.FC<PropsType> = ({page, count, setUsersTC, changePageTC, isFetching, ...props}) => {
+const UsersContainer: React.FC<PropsType> = ({page, count, setUsersTC, isFetching, ...props}) => {
 
 	useEffect( () => {
-		setUsersTC(page, count)
+		setUsersTC(1, count, false)
+		changePage(1)
 	}, [])
 		
 
 	let changePage = ( page: number ) => {
-		changePageTC( page, count)
+		setUsersTC( page, count, true)
 	}
 
 	return <> {isFetching ? <Preloader /> : 
@@ -88,7 +88,7 @@ export default compose(
 	connect(mapStateToProps, 
 	{ follow, requestUsers, changePage, changePortion,
 	requestTotalCountPage, fetching, following,
-	setUsersTC, followTC, changePageTC
+	setUsersTC, followTC
 	}),
 	connect<ConnectedPropsForAuthType, DispatchPropsForAuthType, OwnPropsType, AppStateType>(authMapStateToProps, { }),
 	withAuth

@@ -1,0 +1,21 @@
+.gridWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+}
+
+.item {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    text-decoration: none;
+    color : white;
+}
+
+.ava {
+    border-radius: 1000em;
+    width: 10em;
+    height: 10em;
+}
+

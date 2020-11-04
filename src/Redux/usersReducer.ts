@@ -1,5 +1,6 @@
 import {userAPI} from "../API/api";
-import  { UsersType } from "../utils/types"
+import { UsersType } from "../utils/types"
+import { followFriendsPage } from "./friendsReducer";
 
 const SET_USERS = "SET_USERS";
 const GET_TC = "GET_TC";
@@ -13,9 +14,9 @@ const CHANGE_PORTION = "CHANGE_PORTION";
 
 type RequestUsersACType = {
 	type : typeof SET_USERS
-	newUsers : Array<UsersType>
+	newUsers : Array<UsersType> | null
 }
-export let requestUsers = (newUsers: Array<UsersType>): RequestUsersACType => ({ type: SET_USERS, newUsers });
+export let requestUsers = (newUsers: Array<UsersType> | null): RequestUsersACType => ({ type: SET_USERS, newUsers });
 
 
 type RequestTotalCountPageACType = {
@@ -71,7 +72,7 @@ let initialState = {
 	users : [ ] as Array<UsersType>,
 	page : 1,
 	count : 5,
-	totalCountPage : 20,
+	totalCountPage : 0,
 	currentPage : 1,
 	isFetching : false,
 	followInProgress : [ ] as Array<number>,
@@ -102,56 +103,54 @@ const usersReducer = ( state = initialState, action: actionsType): initialStateT
 		case GET_TC :
 			 return {...state, totalCountPage: action.totalCountPage};
 
-		case FETCHING : 
+		case FETCHING :
 			return {...state, isFetching: !state.isFetching};
 
-		case FOLLOWING : 
+		case FOLLOWING :
 			return {...state, followInProgress : action.isFetching ?
 			[...state.followInProgress, action.userId]
 			: state.followInProgress.filter( id => id != action.userId)} ;
 
-			case CHANGE_PORTION : 
+			case CHANGE_PORTION :
 			return {...state,
 				currentPortion : action.currentPortion
 			}
+
 
 		default : return state;
 	}
 
 };
 
-export let setUsersTC = (page: number, count: number) => async (dispatch: Function) => {
+export let setUsersTC = (page: number, count: number, isChanginfPage : boolean) => async (dispatch: Function) => {
 		dispatch(fetching());
 		let data = await userAPI.setUsers(page, count)
 			dispatch(requestUsers(data.items));
 			dispatch(requestTotalCountPage(data.totalCount));
-			dispatch(fetching());
-};
-
-export let changePageTC = (page: number, count: number) => async (dispatch: Function) => {
-		dispatch(fetching());
-		let data = await userAPI.setUsers(page, count)
-			dispatch(requestUsers(data.items));
-			dispatch(requestTotalCountPage(data.totalCount));
-			dispatch(changePage(page));
+			if(isChanginfPage)
+				dispatch(changePage(page));
 			dispatch(fetching());
 }
 
-let _followHelper = async (dispatch: Function, option: any, userId: number, followAC: Function, followingAC: Function) => {
-	dispatch(followingAC(userId, true));
-	let data = await option(userId)
+let _followHelper = async (dispatch: Function, option: any, id: number, follow: Function, following: Function, isFriendsPage?: boolean) => {
+	dispatch(following(id, true));
+	let data = await option(id)
 	if(data.resultCode === 0) {
-		dispatch(followingAC(userId, false));
-		dispatch(followAC(userId))
+		debugger
+		dispatch(follow(id))
+		if (isFriendsPage)
+			dispatch(followFriendsPage(id))
+		dispatch(following(id, false))
 	}
 }
 
-export let followTC = (isFollow: boolean, userId: number) => async (dispatch: Function) => {
-	dispatch(following(userId, true));
+export let followTC = (isFollow: boolean, id: number, isFriendsPage?: boolean) => async (dispatch: Function) => {
+	dispatch(following(id, true));
 	if (!isFollow) {
-			await _followHelper(dispatch, userAPI.unfollow.bind(userAPI), userId, follow, following)
+		debugger
+			await _followHelper(dispatch, userAPI.unfollow.bind(userAPI), id, follow, following, isFriendsPage)
 		} else if (isFollow) {
-			await _followHelper(dispatch, userAPI.follow.bind(userAPI), userId, follow, following)
+			await _followHelper(dispatch, userAPI.follow.bind(userAPI), id, follow, following, isFriendsPage)
 		}
 }
 

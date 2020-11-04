@@ -10,7 +10,7 @@ import {PostDataType, PhotosType} from "../../utils/types"
 type PropsTypeMyPost = {
     isOwner: boolean
     Posts: Array<PostDataType>
-    photos: PhotosType
+    photos: PhotosType | null
 
     onSubmit: (values: ValuesSubmitType) => void
 }
@@ -38,7 +38,7 @@ const MyPosts: React.FC<PropsTypeMyPost> = ({isOwner, onSubmit, Posts, photos}) 
     return <div>
         <div className={classes.posts}>
             {isOwner && <PostFormWith onSubmit={onSubmit}/>}
-            {Posts.map(p => <Post photo={photos.small} PostText={p.post} key={p.id}/>)}
+            {Posts.map(p => <Post photoSmall={photos ? photos.small : ""} PostText={p.post} key={p.id}/>)}
         </div>
     </div>
 }

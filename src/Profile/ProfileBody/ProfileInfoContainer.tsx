@@ -18,7 +18,7 @@ type ConnectedPropsType = {
 }
 
 type DispatchPropsType = {
-	updateProfileTC : (values: ProfileDataType, myId: number | null) => void
+	updateProfileTC : (values: Object, myId: number | null) => void
 	setEditMode : (editMode: boolean) => void
 }
 

@@ -8,7 +8,7 @@ import { PhotosType, ProfileDataType } from "../../utils/types"
 
 
 type PropsType = {
-	photos : PhotosType
+	photos: PhotosType | null
 	isOwner : boolean
 	status : string | null
 	profileData : ProfileDataType | null

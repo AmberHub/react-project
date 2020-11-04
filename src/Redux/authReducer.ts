@@ -26,7 +26,7 @@ type initialStateType = typeof initialState;
 type AuthUserDataType = {
 	login: string | null
 	email: string | null
-	userId: number | null
+	id: number | null
 }
 
 type actionsType = SetCaptchaACType | SetAuthUserDataACType
@@ -46,7 +46,7 @@ const authReducer = (state=initialState, action: actionsType): initialStateType 
 		return { ...state,
 		login: action.data.login,
 		email: action.data.email,
-		userId: action.data.userId,
+		userId: action.data.id,
 		isAuth: action.isAuth};
 
 		case GET_CAPTCHA :
@@ -91,7 +91,7 @@ export let getCaptchaTC = async (dispatch: Function) => {
 export let logoutTC = () => async (dispatch: Function) => {
 	let data = await authAPI.logout()
 		if(data.resultCode === 0) 
-		dispatch(setAuthUserData({login : null, email : null, userId : null}, false))
+		dispatch(setAuthUserData({login : null, email : null, id : null}, false))
 }
 
  export default authReducer;

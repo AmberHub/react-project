@@ -5,7 +5,6 @@ import SidebarContainer from './Sidebar/SidebarContainer.tsx';
 import ProfileContainer from './Profile/ProfileContainer.tsx';
 import DialogsContainer from './Dialogs/DialogsContainer.tsx';
 import News from './News/News.tsx';
-import Friends from './Friends/Friends.tsx';
 import UsersContainer from './Users/UsersContainer.tsx';
 import LoginContainer from "./Login/LoginContainer.tsx";
 import MessagesContainer from "./Dialogs/Messages/MessagesContainer.tsx";
@@ -13,6 +12,7 @@ import {Route, Switch, Redirect} from "react-router-dom";
 import Preloader from "./utils/Preloader.tsx";
 import {connect} from "react-redux"
 import { initializeAppTC } from "./Redux/appReducer.ts";
+import FriendsContainer from "./Friends/FriendsContainer";
 
 const App = (props) => {
 
@@ -33,7 +33,7 @@ const App = (props) => {
         <Route path="/login" render={() => <LoginContainer />  }/>
         <Route exact path="/dialogs" render={() => <DialogsContainer />  }/>
         <Route exact path="/dialogs/:userId?/messages" render={() => <MessagesContainer />  }/>
-        <Route path="/friends" render={() => <Friends/>  }/>
+        <Route path="/friends" render={() => <FriendsContainer/>  }/>
         <Route path="/news" render={() => <News/>  }/>
         <Route path="/users" render={() => <UsersContainer />  }/>
         <Route path="/profile/:userId?" render={() => <ProfileContainer  />  }/>

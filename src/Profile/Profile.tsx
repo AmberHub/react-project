@@ -9,7 +9,7 @@ type PropsType = StateType & DispatchType
 type StateType = {
 	userId : number
 	isOwner : boolean
-	photos : PhotosType
+	photos: PhotosType | null
 	profileData : ProfileDataType | null
 	status : string | null
 }
