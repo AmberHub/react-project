@@ -1,0 +1,34 @@
+.sidebar {
+  grid-area: s;
+  background-color: #034078;
+}
+
+.nav {
+	padding: 2em;
+}
+
+.item {
+	display: block;
+	text-decoration: none;
+	color: white;
+}
+.active {
+	color: black;
+}
+
+.countContainer {
+	display: inline-block;
+	border-radius: 1000%;
+	background: white;
+	width: 1.2em;
+	height: 1.2em;
+	text-align: center;
+	margin-left: 0.5em;
+}
+
+.count {
+	position: relative;
+	color: black;
+	display: inline-block;
+	font-weight: 700;
+}

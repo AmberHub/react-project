@@ -1,0 +1,10 @@
+.preloader img {
+	display: flex;
+	justify-content: center;
+}
+
+.preloader {
+	display: flex;
+	justify-content: center;
+	margin: 40vh 0 0 0;
+}

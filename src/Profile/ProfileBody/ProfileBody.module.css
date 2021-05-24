@@ -1,0 +1,95 @@
+.upProfile {
+	display: grid;
+	grid-template-areas:
+	"ava globalInfo"
+	"ava info"
+	"posts info";
+	grid-template-columns: 2fr 3fr;
+}
+
+.ava {
+	grid-area: ava;
+}
+
+.globalInfo {
+	grid-area: globalInfo;
+}
+
+.globalInfo .name {
+	font-size: 200%;
+	border-bottom : lightslategray 0.01em solid;
+	width: 50%;
+}
+
+.info {
+	grid-area: info;
+	font-size: 130%
+}
+
+.status {
+	grid-area: status;
+	font-size: 160%
+}
+
+.status .startChat {
+	font-size: 80%;
+	border-radius: 2%;
+}
+
+.startChat {
+    margin-left: 42.8%;
+}
+
+label img {
+	position: relative;
+	width: 20em;
+	height: 20em;
+	margin: 0;
+	padding: 0;
+	border-radius: 1000%;
+}
+
+label {
+	display: flex;
+	width: 20em;
+	height: 20em;
+	border-radius: 1000%
+}
+
+.imgHelper {
+	right: 20em;
+	z-index: 2;
+}
+
+.avaPhoto:hover {
+	cursor: pointer;
+	z-index: -6;
+	-webkit-transition: .4s ease-out;
+     -webkit-transition-delay: 0.5s;
+     -o-transition: .4s ease-out;
+     -o-transition-delay: 0.5s;
+     -moz-transition: .4s ease-out;
+     -moz-transition-delay: 0.5s;
+     transition: .4s ease-out;
+     transition-delay: 0.5s;
+}
+
+.avaPhotoOtherUser {
+	z-index: 3;
+}
+
+.avaPhoto {
+	z-index: 3;
+}
+
+input[type=file] {
+	display: none;
+}
+
+.avaPhotoWrapper {
+	margin: 4vh 4vw 0 4vw;
+}
+
+.MyPosts {
+	grid-area: posts;
+}

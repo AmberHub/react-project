@@ -1,0 +1,43 @@
+.DialogsWrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: 5em;
+}
+
+.dialogsNameItem {
+	display: grid;
+	grid-template-columns: 1fr 6fr;
+	grid-auto-rows: 5em;
+	text-decoration: none;
+	color: white;
+	border: 1px black solid;
+	background: grey;
+}
+
+.dialogsNameItem:hover {
+	background: black;
+}
+
+.iconNewMessages {
+	display: inline-block;
+	border-radius: 1000%;
+	background: white;
+	width: 1.2em;
+	height: 1.2em;
+	text-align: center;
+	margin-left: 0.5em;
+}
+
+.count {
+	position: relative;
+	color: black;
+	display: inline-block;
+	font-weight: 700;
+}
+
+.dialogsImg {
+	margin: auto;
+	width: 4em;
+	height: 4em;
+	border-radius: 1000%;
+}

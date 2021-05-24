@@ -1,0 +1,20 @@
+.header {
+  grid-area: h;
+  background-color: #001F54;
+}
+
+.header img {
+  height: 3em;
+  width: 3em;
+}
+
+.login {
+	float: right;
+	margin-right: 1em;
+	color: white;
+	text-decoration: none;
+}
+
+.logout {
+	float: right;
+}

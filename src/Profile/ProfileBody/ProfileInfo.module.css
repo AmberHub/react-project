@@ -1,0 +1,68 @@
+.contactItemText {
+    padding-left: 10%;
+}
+
+.infoTextWrapper {
+    height: 20em;
+    width: 10em;
+    margin: 10vh 0 0 0;
+}
+
+.buttonEditInfo {
+    border-bottom: lightslategray 0.01em solid;
+    padding-bottom: 0.3em;
+}
+
+.infoItem {
+    margin: 0.1em 0;
+}
+
+.buttonSubmitForm {
+    width: 4.5em;
+    height: 2em;
+    background: white;
+    border: white 0.01em solid;
+    text-align: center;
+    border-radius: 0.1em;
+    margin-bottom: 0.5em;
+}
+
+.buttonSubmitForm:hover {
+    border: deepskyblue 0.01em solid;
+    color: deepskyblue;
+    -webkit-transition: .4s ease-out;
+    -webkit-transition-delay: 0.2s;
+    -o-transition: .4s ease-out;
+    -o-transition-delay: 0.2s;
+    -moz-transition: .4s ease-out;
+    -moz-transition-delay: 0.2s;
+    transition: .4s ease-out;
+    transition-delay: 0.2s;
+}
+
+.vkIcon {
+    height: 1em;
+    width: 1em;
+}
+
+.IconsContacts {
+    margin-right: 0.5em;
+    color: black;
+}
+
+.ContactsLink {
+    text-decoration: none;
+    color : darkblue;
+}
+
+.ContactsLink:hover {
+    color : white;
+    -webkit-transition: .4s ease-out;
+    -webkit-transition-delay: 0.2s;
+    -o-transition: .4s ease-out;
+    -o-transition-delay: 0.2s;
+    -moz-transition: .4s ease-out;
+    -moz-transition-delay: 0.2s;
+    transition: .4s ease-out;
+    transition-delay: 0.2s;
+}
